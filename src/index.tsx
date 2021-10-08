@@ -6,13 +6,16 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+import SearchField from './searchField'
+import { ChakraProvider } from '@chakra-ui/react'
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ChakraProvider>
     <Provider store={store}>
-      <App />
+      <SearchField />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </ChakraProvider>
+  , document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
