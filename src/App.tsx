@@ -1,5 +1,6 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import "./App.css";
+import { PageContent } from "./PageContent";
 import { Palette, PaletteContext, usePalette, palettes } from "./Palette";
 
 function App() {
@@ -9,12 +10,10 @@ function App() {
   return (
     <PaletteContext.Provider value={palette}>
       <div className="App">
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" px={3} h={400}>
-          Input
-        </Box>
+        <PageContent />
         <Box id="footer" bg={bgcolor} color={"white"} boxShadow={3}>
           <div id="footerContent">
-            <span>Made with love </span>
+            <span>Made with love by group 6 </span>
           </div>
         </Box>
       </div>

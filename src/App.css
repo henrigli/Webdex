@@ -58,3 +58,25 @@
   padding: 0 20px;
   text-align: center;
 }
+
+/* Grid */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.filter {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+.serachResults {
+  grid-column: 2 / -1;
+  grid-row: 1;
+}
+
+.items {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
