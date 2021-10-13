@@ -3,7 +3,8 @@ import {
     Button,
     FormControl,
     FormLabel,
-    Input
+    Input,
+    Box
   } from "@chakra-ui/react"
 
 const SearchField = () => {
@@ -12,6 +13,7 @@ const SearchField = () => {
     return (
         <FormControl class="searchField" action="/" method="get">
             <FormLabel className="label" htmlFor="query">Søk etter Pokémon!</FormLabel>
+            <Box> </Box>
             <Input type="text" name="query" placeholder={"Søk etter Pokémon!"} value= {query} onChange={(e) => setQuery(e.target.value)} />
             <Button size="md" colorScheme="teal" w="full" type="submit"> Submit </Button>
         </FormControl>
