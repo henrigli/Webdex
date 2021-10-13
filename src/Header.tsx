@@ -1,4 +1,5 @@
 import { Flex, Heading, useColorModeValue } from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Header = () => {
   const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
@@ -15,6 +16,7 @@ export const Header = () => {
           Pokémon
         </Heading>
       </Flex>
+      <ColorModeSwitcher />
     </Flex>
   );
 };
