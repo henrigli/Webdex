@@ -1,24 +1,17 @@
 import * as express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
-
-const pokeList = [
-  { id: 1, name: "Bulbasaur" },
-  { id: 2, name: "Ivysaur" },
-  { id: 3, name: "Venusaur" },
-  { id: 4, name: "Squirtle" },
-  { id: 5, name: "Wartortle" },
-  { id: 6, name: "Blastoise" },
-  { id: 7, name: "Charmander" },
-  { id: 8, name: "Charmeleon" },
-  { id: 9, name: "Charizard" },
-];
+import Pokemon from './pokemon';
 
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
 type Pokemon {
   id: Int,
-  name: String
+  name: String,
+  height: Float,
+  weight: Float,
+  types: [String],
+  description: String,
 },
 
 type Query {
@@ -30,10 +23,10 @@ type Query {
 // The root provides a resolver function for each API endpoint
 const root = {
   pokemon: async (args) => {
-    return await pokeList.find(p => p.id == args.id);
+    return await Pokemon.findOne({_id: args.id});
   },
   pokemon_search: async (args) => {
-    return await pokeList.filter(p => p.name.includes(args.filter));
+    return await Pokemon.find({name: new RegExp(args.filter, "i")});
   },
 };
 
