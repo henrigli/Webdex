@@ -16,7 +16,17 @@ type Pokemon {
 
 type Query {
   pokemon(id: Int): Pokemon,
-  pokemon_search(filter: String): [Pokemon],
+  pokemon_search(
+    filter: String,
+    type: String,
+    height_lte: Int,
+    height_gte: Int,
+    weight_lte: Int,
+    weight_gte: Int,
+    skip: Int,
+    limit: Int,
+    sort: String,
+    ): [Pokemon],
 }
 `);
 
@@ -26,8 +36,20 @@ const root = {
     return await Pokemon.findOne({_id: args.id});
   },
   pokemon_search: async (args) => {
-    return await Pokemon.find({name: new RegExp(args.filter, "i")});
-  },
+    let query = Pokemon.find({name: new RegExp(args.filter, "i")});
+
+    if (args.type) query.where({types: args.type});
+    if (args.height_lte) query.where('height').lte(args.height_lte);
+    if (args.height_gte) query.where('height').gte(args.height_gte);
+    if (args.weight_lte) query.where('weight').lte(args.weight_lte);
+    if (args.weight_gte) query.where('weight').gte(args.weight_gte);
+
+    query.setOptions({skip: args.skip, limit: args.limit});
+    query.sort(args.sort || "_id");
+
+    console.log(query);
+    return await query.exec();
+  }
 };
 
 var app = express();
