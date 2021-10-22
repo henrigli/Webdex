@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Badge } from '@chakra-ui/react'
+import { Box, Image, Badge, useColorModeValue } from '@chakra-ui/react'
 
 const PokemonContainer = () => {
 
@@ -24,13 +24,15 @@ const PokemonContainer = () => {
         description: "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
       }
 
+      const bgcolor = useColorModeValue("white", "whiteAlpha.50");
+
     return (
-        <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden" bg={bgcolor}>
           <Image maxW="xs" src={property.imageUrl} alt={property.imageAlt} />
         
           <Box p="6">
             <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
+              <Badge borderRadius="full" px="2" colorScheme="orange">
                 { property.type.join(" / ") }
 
               </Badge>
@@ -55,14 +57,14 @@ const PokemonContainer = () => {
               {property.title}
             </Box>
     
-            <Box fontStyle="italic">
+            <Box as="i" noOfLines={ 3 }>
               {property.description}
-              <Box as="span" color="gray.600" fontSize="sm">
+              <Box as="span" color="gray.600" fontSize="xs" >
                 
               </Box>
             </Box>
     
-              <Box as="span" fontSize="sm">
+              <Box fontSize="xs">
                   ID: {property.id}
               </Box>
             </Box>

@@ -6,13 +6,14 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-import SearchField from './SearchField'
 import { ChakraProvider } from '@chakra-ui/react'
 import PokemonContainer from './PokemonContainer';
+import { Header } from './Header';
 
 ReactDOM.render(
   <ChakraProvider>
     <Provider store={store}>
+      <Header />
       <PokemonContainer />
     </Provider>
   </ChakraProvider>
