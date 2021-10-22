@@ -27,7 +27,7 @@ const PokemonContainer = () => {
       const bgcolor = useColorModeValue("white", "whiteAlpha.50");
 
     return (
-        <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden" bg={bgcolor}>
+        <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden" bg={bgcolor} shadow="md">
           <Image maxW="xs" src={property.imageUrl} alt={property.imageAlt} />
         
           <Box p="6">
