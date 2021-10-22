@@ -2,7 +2,7 @@ import { Flex, Heading, useColorModeValue, Spacer } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Header = () => {
-  const bgcolor = useColorModeValue("orange.600", "whiteAlpha.50");
+  const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
 
   return (
     <Flex padding={6} bg={bgcolor} color="white" shadow="md">

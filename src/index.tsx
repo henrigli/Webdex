@@ -1,26 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
-
-import { ChakraProvider } from '@chakra-ui/react'
-import PokemonContainer from './PokemonContainer';
-import { Header } from './Header';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Header } from "./Header";
+import { client } from "./services/graphql";
+import { ApolloProvider } from "@apollo/client";
 
 ReactDOM.render(
-  <ChakraProvider>
+  <React.StrictMode>
     <Provider store={store}>
-      <Header />
-      <PokemonContainer />
+      <ChakraProvider>
+        <Header />
+        <ApolloProvider client={client}>
+        <App />
+        </ApolloProvider>
+      </ChakraProvider>
     </Provider>
-  </ChakraProvider>
-  , document.getElementById('root')
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
