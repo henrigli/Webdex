@@ -1,12 +1,6 @@
 import React from 'react';
 import { Box, Image, Badge } from '@chakra-ui/react'
 
-type Props = {
-    id: string;
-    title: string;
-    imgPath: string;
-};
-
 const PokemonContainer = () => {
 
     interface property {
@@ -31,16 +25,17 @@ const PokemonContainer = () => {
       }
 
     return (
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
+        <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden">
+          <Image maxW="xs" src={property.imageUrl} alt={property.imageAlt} />
         
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
-                { property.type }
+                { property.type.join(" / ") }
+
               </Badge>
               <Box
-                color="gray.500"
+                color="gray.400"
                 fontWeight="semibold"
                 letterSpacing="wide"
                 fontSize="xs"
@@ -60,7 +55,7 @@ const PokemonContainer = () => {
               {property.title}
             </Box>
     
-            <Box>
+            <Box fontStyle="italic">
               {property.description}
               <Box as="span" color="gray.600" fontSize="sm">
                 
