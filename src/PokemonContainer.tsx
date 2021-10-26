@@ -1,41 +1,22 @@
 import React from 'react';
-import { Box, Image, Badge, useColorModeValue } from '@chakra-ui/react'
+import { Box, Image, Badge, useColorModeValue, Spacer } from '@chakra-ui/react'
+import { Pokemon } from './services/graphql';
 
-const PokemonContainer = () => {
-
-    interface property {
-        id: number,
-        imageUrl: string,
-        imageAlt: string,
-        type: string[],
-        weight: number,
-        height: number,
-        title: string,
-        description: string
-    }
-    const property = {
-        id: 4,
-        imageUrl: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/129.png",
-        imageAlt: "Magicarp",
-        type: ["Water", "Earth"],
-        weight: 10.0,
-        height: 0.9,
-        title: "Magicarp",
-        description: "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
-      }
+const PokemonContainer = (props: {pokemon: Pokemon}) => {
 
       const bgcolor = useColorModeValue("white", "whiteAlpha.50");
 
     return (
         <Box maxW="xs" borderWidth="1px" borderRadius="lg" overflow="hidden" bg={bgcolor} shadow="md">
-          <Image maxW="xs" src={property.imageUrl} alt={property.imageAlt} />
+          <Image maxW="xs" src={`http://it2810-06.idi.ntnu.no/images/large/${props.pokemon.id}.png`} />
         
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="orange">
-                { property.type.join(" / ") }
+                { props.pokemon.types.join(" / ") }
 
               </Badge>
+              <Spacer />
               <Box
                 color="gray.400"
                 fontWeight="semibold"
@@ -43,7 +24,7 @@ const PokemonContainer = () => {
                 fontSize="xs"
                 ml="2"
               >
-                {property.weight}kg &bull; {property.height}m
+                {props.pokemon.weight}kg &bull; {props.pokemon.height}m
               </Box>
             </Box>
     
@@ -54,18 +35,18 @@ const PokemonContainer = () => {
               lineHeight="tight"
               isTruncated
             >
-              {property.title}
+              {props.pokemon.name}
             </Box>
     
             <Box as="i" noOfLines={ 3 }>
-              {property.description}
+              {props.pokemon.description}
               <Box as="span" color="gray.600" fontSize="xs" >
                 
               </Box>
             </Box>
     
               <Box fontSize="xs">
-                  ID: {property.id}
+                  ID: {props.pokemon.id}
               </Box>
             </Box>
           </Box>

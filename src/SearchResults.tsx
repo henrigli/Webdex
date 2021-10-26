@@ -8,7 +8,7 @@ export const SearchResults = () => {
     variables: {
       filter: "chu",
       skip: 0,
-      limit: 3,
+      limit: 6,
     }
   });
 
@@ -16,21 +16,18 @@ export const SearchResults = () => {
   if (error) return <Error error={error} />;
 
   return (
-    <div>
       <Grid
         h="200px"
-        templateColumns="repeat(auto-fit, minmax(200px, 1fr)"
-        gap={4}
-      >
-        {data.pokemon_search.map((p: Pokemon) => <PokemonContainer />)}
+        templateColumns="repeat(auto-fit, minmax(5, 3fr)"
+        gap={4}>
+        {data.pokemon_search.map((p: Pokemon) => <PokemonContainer pokemon={p}/>)}
       </Grid>
-    </div>
   );
 };
 
 const PokemonCard = (props: {pokemon: Pokemon}) => {
   return (
-    <GridItem colSpan={1}>
+    <GridItem colSpan={3}>
       <Box maxW="sm" borderWidth="1px" borderRadius="lg">
       <p>#{props.pokemon.id}: {props.pokemon.name}</p>
       <p>{props.pokemon.types.join(", ")}</p>
