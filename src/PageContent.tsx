@@ -7,8 +7,7 @@ export const PageContent = () => {
       h="150px"
       templateRows="repeat(1, 2fr)"
       templateColumns="repeat(2, 2fr)"
-      gap={4}
-    >
+      gap={4}>
      
       <GridItem colSpan={3}>
         <SearchResults />

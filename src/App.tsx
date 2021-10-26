@@ -1,4 +1,4 @@
-import { Box, HStack, useColorModeValue } from "@chakra-ui/react";
+import { Center, VStack, useColorModeValue } from "@chakra-ui/react";
 import "./App.css";
 import { FilterBox } from "./FilterBox";
 import { PageContent } from "./PageContent";
@@ -11,10 +11,13 @@ function App() {
   return (
     <PaletteContext.Provider value={palette}>
       <div className="App">
-        <HStack>
-          <FilterBox />
-          <PageContent />
-        </HStack>
+        <Center>
+          <VStack w="100%" spacing={4}>
+            <FilterBox />
+            <PageContent />
+          </VStack>
+        </Center>
+          
         {/* <Box id="footer" bg={bgcolor} color={"white"} boxShadow={3}>
           <div id="footerContent">
             <span>Made with love by group 6 </span>

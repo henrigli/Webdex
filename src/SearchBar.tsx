@@ -7,7 +7,7 @@ import {
     Box
   } from "@chakra-ui/react"
 
-const SearchField = () => {
+export const SearchBar = () => {
     const [query, setQuery] = useState("");
     console.log(query)
     return (
@@ -19,5 +19,3 @@ const SearchField = () => {
         </FormControl>
   );
 }
-
-export default SearchField;

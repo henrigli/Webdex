@@ -6,9 +6,9 @@ import PokemonContainer from "./PokemonContainer";
 export const SearchResults = () => {
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     variables: {
-      filter: "chu",
+      filter: "",
       skip: 0,
-      limit: 6,
+      limit: 24,
     }
   });
 
@@ -16,10 +16,7 @@ export const SearchResults = () => {
   if (error) return <Error error={error} />;
 
   return (
-      <Grid
-        h="200px"
-        templateColumns="repeat(auto-fit, minmax(5, 3fr)"
-        gap={4}>
+    <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={2}>
         {data.pokemon_search.map((p: Pokemon) => <PokemonContainer pokemon={p}/>)}
       </Grid>
   );

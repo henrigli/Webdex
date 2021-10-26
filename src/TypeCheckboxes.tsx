@@ -6,12 +6,12 @@ import {
   AccordionPanel,
   Box,
   Checkbox,
-  VStack,
+  Grid,
 } from "@chakra-ui/react";
 
 export const TypeCheckboxes = () => {
   return (
-    <Accordion allowToggle>
+    <Accordion allowToggle pb={4}>
       <AccordionItem>
         <AccordionButton>
           <Box flex="1" textAlign="left">
@@ -20,7 +20,7 @@ export const TypeCheckboxes = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel pb={4}>
-          <VStack spacing={1} align="stretch">
+        <Grid templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={3}>
             <Checkbox>Normal</Checkbox>
             <Checkbox>Fire</Checkbox>
             <Checkbox>Water</Checkbox>
@@ -39,7 +39,7 @@ export const TypeCheckboxes = () => {
             <Checkbox>Dragon</Checkbox>
             <Checkbox>Steel</Checkbox>
             <Checkbox>Fairy</Checkbox>
-          </VStack>
+          </Grid>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
