@@ -1,13 +1,14 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { client, Pokemon, SEARCH_QUERY } from "./services/graphql";
+import PokemonContainer from "./PokemonContainer";
 
 export const SearchResults = () => {
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     variables: {
-      filter: "chu",
+      filter: "",
       skip: 0,
-      limit: 3,
+      limit: 24,
     }
   });
 
@@ -15,21 +16,15 @@ export const SearchResults = () => {
   if (error) return <Error error={error} />;
 
   return (
-    <div>
-      <Grid
-        h="200px"
-        templateColumns="repeat(auto-fit, minmax(200px, 1fr)"
-        gap={4}
-      >
-        {data.pokemon_search.map((p: Pokemon) => <PokemonCard pokemon={p} />)}
+    <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={2}>
+        {data.pokemon_search.map((p: Pokemon) => <PokemonContainer pokemon={p}/>)}
       </Grid>
-    </div>
   );
 };
 
 const PokemonCard = (props: {pokemon: Pokemon}) => {
   return (
-    <GridItem colSpan={1}>
+    <GridItem colSpan={3}>
       <Box maxW="sm" borderWidth="1px" borderRadius="lg">
       <p>#{props.pokemon.id}: {props.pokemon.name}</p>
       <p>{props.pokemon.types.join(", ")}</p>
