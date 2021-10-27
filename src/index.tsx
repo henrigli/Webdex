@@ -9,15 +9,17 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Header } from "./Header";
 import { client } from "./services/graphql";
 import { ApolloProvider } from "@apollo/client";
+import Login from "./Login";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ChakraProvider>
-        <Header />
+        {/* <Header />
         <ApolloProvider client={client}>
         <App />
-        </ApolloProvider>
+        </ApolloProvider> */}
+        <Login />
       </ChakraProvider>
     </Provider>
   </React.StrictMode>,
