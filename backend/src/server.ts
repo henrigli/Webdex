@@ -16,9 +16,7 @@ type Pokemon {
 },
 
 type User {
-  id: Int,
   name: String,
-  claps: [String],
 }
 
 
@@ -39,6 +37,10 @@ type Query {
     sort: String,
     ): [Pokemon],
 
+}
+
+type Mutation {
+  createUser(name: String) : User
 }
 `);
 
@@ -64,6 +66,11 @@ const root = {
   },
   user: async (args) => {
     return await User.findOne({ name: args.name });
+  },
+  createUser: async (input) => {
+    console.log(input, input.name);
+    const user = await new User(input).save((err) => console.log(err));
+    return await User.findOne({ name: input.name });
   },
 };
 
