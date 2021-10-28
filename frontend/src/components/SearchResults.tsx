@@ -1,6 +1,6 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
-import { client, Pokemon, SEARCH_QUERY } from "./services/graphql";
+import { client, Pokemon, SEARCH_QUERY } from "../services/graphql";
 import PokemonContainer from "./PokemonContainer";
 
 export const SearchResults = () => {
