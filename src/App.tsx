@@ -5,6 +5,7 @@ import { PageContent } from "./PageContent";
 import { PaletteContext, palettes } from "./Palette";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 import Login from "./Login";
+import Signup from "./Signup";
 
 function App() {
   let palette = useColorModeValue(palettes["light"], palettes["dark"]);
@@ -23,10 +24,10 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          {/* <Route path="/signup">
-            <SignUp />
+          <Route path="/signup">
+            <Signup />
           </Route>
-          <Route path="/profile">
+          {/* <Route path="/profile">
             <Profile />
           </Route> */}
           <Route path="main">
@@ -38,7 +39,12 @@ function App() {
             </Center>
           </Route>
           <Route path="/">
-            <Login />
+            <Center>
+              <VStack w="100%" spacing={4}>
+                <FilterBox />
+                <PageContent />
+              </VStack>
+            </Center>
           </Route>
           <Route path="/">
             <h2>404 </h2>

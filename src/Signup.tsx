@@ -16,7 +16,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 
-const Login = () => {
+const Signup = () => {
   return (
     <Flex
       flexDirection="column"
@@ -58,20 +58,20 @@ const Login = () => {
                 colorScheme="teal"
                 width="full"
               >
-                Login
+                Sign up
               </Button>
             </Stack>
           </form>
         </Box>
       </Stack>
       <Box>
-        Don't have a user?{" "}
-        <Link color="teal.500" href="/signup">
-          Sign Up
+        Already have a user?{" "}
+        <Link color="teal.500" href="/login">
+          Login
         </Link>
       </Box>
     </Flex>
   );
 };
 
-export default Login;
+export default Signup;

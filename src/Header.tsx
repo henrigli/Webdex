@@ -1,4 +1,11 @@
-import { Flex, Heading, useColorModeValue, Spacer } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  useColorModeValue,
+  Spacer,
+  Avatar,
+  IconButton,
+} from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Header = () => {
@@ -17,6 +24,11 @@ export const Header = () => {
         </Heading>
       </Flex>
       <Spacer />
+      <IconButton
+        variant="ghost"
+        icon={<Avatar bg="teal.500" size="sm" />}
+        aria-label={`Go to profile`}
+      />
       <ColorModeSwitcher />
     </Flex>
   );
