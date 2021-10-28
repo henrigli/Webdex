@@ -25,6 +25,7 @@ export const HeightSlider = () => {
         aria-label={["min", "max"]}
         defaultValue={[0, 100]}
         onChange={(val) => setEdges(val)}
+        colorScheme="teal"
       >
         <RangeSliderTrack>
           <RangeSliderFilledTrack />

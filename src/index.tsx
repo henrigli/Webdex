@@ -9,6 +9,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Header } from "./Header";
 import { client } from "./services/graphql";
 import { ApolloProvider } from "@apollo/client";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.render(
       <ChakraProvider>
         <Header />
         <ApolloProvider client={client}>
-        <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </ApolloProvider>
       </ChakraProvider>
     </Provider>

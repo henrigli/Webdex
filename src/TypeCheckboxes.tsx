@@ -20,25 +20,25 @@ export const TypeCheckboxes = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel pb={4}>
-        <Grid templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={3}>
-            <Checkbox>Normal</Checkbox>
-            <Checkbox>Fire</Checkbox>
-            <Checkbox>Water</Checkbox>
-            <Checkbox>Grass</Checkbox>
-            <Checkbox>Electric</Checkbox>
-            <Checkbox>Ice</Checkbox>
-            <Checkbox>Fighting</Checkbox>
-            <Checkbox>Poison</Checkbox>
-            <Checkbox>Ground</Checkbox>
-            <Checkbox>Flying</Checkbox>
-            <Checkbox>Psychic</Checkbox>
-            <Checkbox>Bug</Checkbox>
-            <Checkbox>Rock</Checkbox>
-            <Checkbox>Ghost</Checkbox>
-            <Checkbox>Dark</Checkbox>
-            <Checkbox>Dragon</Checkbox>
-            <Checkbox>Steel</Checkbox>
-            <Checkbox>Fairy</Checkbox>
+          <Grid templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)"]} gap={3}>
+            <Checkbox colorScheme="teal">Normal</Checkbox>
+            <Checkbox colorScheme="teal">Fire</Checkbox>
+            <Checkbox colorScheme="teal">Water</Checkbox>
+            <Checkbox colorScheme="teal">Grass</Checkbox>
+            <Checkbox colorScheme="teal">Electric</Checkbox>
+            <Checkbox colorScheme="teal">Ice</Checkbox>
+            <Checkbox colorScheme="teal">Fighting</Checkbox>
+            <Checkbox colorScheme="teal">Poison</Checkbox>
+            <Checkbox colorScheme="teal">Ground</Checkbox>
+            <Checkbox colorScheme="teal">Flying</Checkbox>
+            <Checkbox colorScheme="teal"> Psychic</Checkbox>
+            <Checkbox colorScheme="teal">Bug</Checkbox>
+            <Checkbox colorScheme="teal">Rock</Checkbox>
+            <Checkbox colorScheme="teal">Ghost</Checkbox>
+            <Checkbox colorScheme="teal">Dark</Checkbox>
+            <Checkbox colorScheme="teal">Dragon</Checkbox>
+            <Checkbox colorScheme="teal">Steel</Checkbox>
+            <Checkbox colorScheme="teal">Fairy</Checkbox>
           </Grid>
         </AccordionPanel>
       </AccordionItem>
