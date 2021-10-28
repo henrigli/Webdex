@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Image, Badge, useColorModeValue, Spacer } from '@chakra-ui/react'
-import { Pokemon } from './services/graphql';
+import { Pokemon } from '../services/graphql';
 
 const PokemonContainer = (props: {pokemon: Pokemon}) => {
 

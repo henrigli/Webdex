@@ -1,11 +1,11 @@
 import { Center, VStack, useColorModeValue } from "@chakra-ui/react";
 import "./App.css";
-import { FilterBox } from "./FilterBox";
-import { PageContent } from "./PageContent";
+import { FilterBox } from "./components/FilterBox";
+import { PageContent } from "./components/PageContent";
 import { PaletteContext, palettes } from "./Palette";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   let palette = useColorModeValue(palettes["light"], palettes["dark"]);
