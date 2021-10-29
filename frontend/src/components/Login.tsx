@@ -16,6 +16,7 @@ import {
 
 import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { Redirect } from "react-router-dom";
 import { FIND_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -35,9 +36,17 @@ const Login: React.FC = () => {
     if (loading) {
       console.log("loading...");
     }
-    if (error) return console.log(error);
 
-    console.log(data);
+    if (error) return console.error(error);
+
+    if (data.user != null) {
+      redirect();
+    }
+  };
+
+  const redirect = () => {
+    const name: string = data.user.name;
+    console.log(name);
   };
 
   return (
@@ -58,37 +67,36 @@ const Login: React.FC = () => {
         <Avatar bg="teal.500" />
         <Heading color="teal.400">Welcome</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
-            <Stack
-              spacing={4}
-              p="1rem"
-              backgroundColor="whiteAlpha.900"
-              boxShadow="md"
+          <Stack
+            spacing={4}
+            p="1rem"
+            backgroundColor="whiteAlpha.900"
+            boxShadow="md"
+          >
+            <FormControl>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<CFaUserAlt color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  onChange={(e) => setuserName(e.target.value)}
+                />
+              </InputGroup>
+            </FormControl>
+            <Button
+              borderRadius={0}
+              variant="solid"
+              colorScheme="teal"
+              width="full"
+              onClick={handleLogin}
             >
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                  />
-                  <Input
-                    type="text"
-                    placeholder="Username"
-                    onChange={(e) => setuserName(e.target.value)}
-                  />
-                </InputGroup>
-              </FormControl>
-              <Button
-                borderRadius={0}
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-                onClick={handleLogin}
-              >
-                Login
-              </Button>
-            </Stack>
-          </form>
+              Login
+            </Button>
+            <p id="testing"></p>
+          </Stack>
         </Box>
       </Stack>
       <Box>
