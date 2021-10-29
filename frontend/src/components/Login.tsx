@@ -1,3 +1,4 @@
+import { useLazyQuery, useQuery } from "@apollo/client";
 import {
   Flex,
   Heading,
@@ -12,11 +13,33 @@ import {
   Avatar,
   FormControl,
 } from "@chakra-ui/react";
+
+import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { FIND_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
 
-const Login = () => {
+const Login: React.FC = () => {
+  const [username, setuserName] = useState("");
+
+  const { loading, error, data } = useQuery(FIND_USER, {
+    variables: {
+      name: username,
+    },
+  });
+
+  const handleLogin = async () => {
+    console.log("getting data from api");
+
+    if (loading) {
+      console.log("loading...");
+    }
+    if (error) return console.log(error);
+
+    console.log(data);
+  };
+
   return (
     <Flex
       flexDirection="column"
@@ -48,15 +71,19 @@ const Login = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="text" placeholder="Username" />
+                  <Input
+                    type="text"
+                    placeholder="Username"
+                    onChange={(e) => setuserName(e.target.value)}
+                  />
                 </InputGroup>
               </FormControl>
               <Button
                 borderRadius={0}
-                type="submit"
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={handleLogin}
               >
                 Login
               </Button>
