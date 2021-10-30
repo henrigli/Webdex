@@ -17,11 +17,15 @@ import {
 import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
+import { useAppSelector, useAppDispatch, setName, clearName, selectName } from '../features/name/nameSlice';
+
 import { FIND_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
 
 const Login: React.FC = () => {
+  const reduxName = useAppSelector(selectName);
+  const dispatch = useAppDispatch();
   const [username, setuserName] = useState("");
 
   const { loading, error, data } = useQuery(FIND_USER, {
@@ -31,6 +35,7 @@ const Login: React.FC = () => {
   });
 
   const handleLogin = async () => {
+    console.log("Name is: ", )
     console.log("getting data from api");
 
     if (loading) {
@@ -40,12 +45,12 @@ const Login: React.FC = () => {
     if (error) return console.error(error);
 
     if (data.user != null) {
-      redirect();
+      redirect(data.user.name);
     }
   };
 
-  const redirect = () => {
-    const name: string = data.user.name;
+  const redirect = (name: string) => {
+    dispatch(setName(name));
     console.log(name);
   };
 
@@ -65,7 +70,7 @@ const Login: React.FC = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Heading color="teal.400">Welcome, {reduxName}</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <Stack
             spacing={4}
