@@ -6,6 +6,7 @@ import { PaletteContext, palettes } from "./Palette";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import PokemonPage from "./components/PokemonPage";
 
 function App() {
   let palette = useColorModeValue(palettes["light"], palettes["dark"]);
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup />
+          </Route>
+          <Route exact path="/pokemon/:id">
+            <PokemonPage />
           </Route>
           {/* <Route path="/profile">
             <Profile />
