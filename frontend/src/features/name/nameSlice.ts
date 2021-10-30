@@ -1,9 +1,8 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { saveName, loadName } from "./localStorage";
 
-const initialState = {
-    name: ''
-};
+const initialState: {name: String} = loadName();
 
 const nameSlice = createSlice({
     name: "name",
@@ -22,8 +21,12 @@ export const store = configureStore({
     reducer: {
       logger: nameSlice.reducer,
     },
-  });
+});
   
+store.subscribe(() => {
+    saveName({name: store.getState().logger.name})
+})
+
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
