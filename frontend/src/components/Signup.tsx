@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/client";
 import {
   Flex,
   Heading,
@@ -12,11 +13,43 @@ import {
   Avatar,
   FormControl,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { POST_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
 
 const Signup = () => {
+  const [username, setuserName] = useState("");
+
+  const [postUser, { data, loading, error }] = useMutation(POST_USER, {
+    variables: {
+      name: username,
+    },
+  });
+
+  const handleRegistration = async () => {
+    console.log("posting data to the api...");
+
+    if (username == null) {
+      return console.log("invalid username, please write something");
+    }
+
+    postUser({ variables: { name: username } });
+
+    if (loading) return "Submitting...";
+    if (error) return `Submission error! ${error.message}`;
+
+    if (data.createUser != null) {
+      redirect();
+    }
+  };
+
+  const redirect = () => {
+    const name: string = data.createUser.name;
+    console.log(name);
+  };
+
   return (
     <Flex
       flexDirection="column"
@@ -48,15 +81,19 @@ const Signup = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="text" placeholder="Username" />
+                  <Input
+                    type="text"
+                    placeholder="Username"
+                    onChange={(e) => setuserName(e.target.value)}
+                  />
                 </InputGroup>
               </FormControl>
               <Button
                 borderRadius={0}
-                type="submit"
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={handleRegistration}
               >
                 Sign up
               </Button>

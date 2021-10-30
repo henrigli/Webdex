@@ -42,6 +42,14 @@ export const FIND_USER = gql`
   }
 `;
 
+export const POST_USER = gql`
+  mutation Mutation($name: String) {
+    createUser(name: $name) {
+      name
+    }
+  }
+`;
+
 export const SEARCH_QUERY = gql`
   query Query(
     $filter: String
