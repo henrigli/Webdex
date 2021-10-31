@@ -1,12 +1,25 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, propNames } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 import { client, Pokemon, SEARCH_QUERY } from "../services/graphql";
 import PokemonContainer from "./PokemonContainer";
+import {
+  selectFilter,
+  selectMaxWeight,
+  selectMinWeight,
+  useAppSelector,
+} from "../features/store";
 
 export const SearchResults = () => {
+  const filter = useAppSelector(selectFilter);
+  const minWeight = useAppSelector(selectMinWeight);
+  const maxWeight = useAppSelector(selectMaxWeight);
+
+  console.log(filter);
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     variables: {
-      filter: "",
+      filter: filter,
+      weight_gte: minWeight, // min weight
+      weight_lte: maxWeight, //max weight
       skip: 0,
       limit: 24,
     },

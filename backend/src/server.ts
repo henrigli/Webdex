@@ -1,4 +1,5 @@
 import * as express from "express";
+import * as cors from "cors";
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 import Pokemon from "./pokemon";
@@ -17,8 +18,8 @@ type Pokemon {
 
 type User {
   name: String,
+  favorites: [Pokemon],
 }
-
 
 type Query {
   user(name: String): User,
@@ -39,8 +40,17 @@ type Query {
 
 }
 
+type UserError {
+  message: String
+}
+
+type createUserPayload {
+  user: User,
+  errors: [UserError],
+}
+
 type Mutation {
-  createUser(name: String) : User
+  createUser(name: String): createUserPayload
 }
 `);
 
@@ -69,12 +79,31 @@ const root = {
   },
   createUser: async (input) => {
     console.log(input, input.name);
+
+    // Thanks to https://productionreadygraphql.com/2020-08-01-guide-to-graphql-errors
+    if (await User.findOne({ name: input.name })) {
+      return {
+        user: null,
+        errors: [
+          { message: `Username ${input.name} is already taken.` }
+        ]
+      };
+    }
+
     const user = await new User(input).save((err) => console.log(err));
-    return await User.findOne({ name: input.name });
+
+    // Compensate for cases where creation method returns before new user
+    // can be retrieved
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const newUser = await User.findOne({ name: input.name });
+
+    return { user: newUser, errors: []};
   },
 };
 
 var app = express();
+app.use(cors());
 app.use(
   "/graphql",
   graphqlHTTP({

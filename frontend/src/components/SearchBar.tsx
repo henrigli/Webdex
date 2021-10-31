@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
+import { store } from "../app/store";
+import {
+  selectFilter,
+  setFilter,
+  useAppSelector,
+  useAppDispatch,
+} from "../features/store";
+
 export const SearchBar = () => {
+  const dispatch = useAppDispatch();
   const [query, setQuery] = useState("");
-  console.log(query);
   return (
     <FormControl class="searchField" action="/" method="get">
       <FormLabel className="label" htmlFor="query"></FormLabel>
@@ -15,11 +23,15 @@ export const SearchBar = () => {
         onChange={(e) => setQuery(e.target.value)}
       />
       <Button
+        mt={3}
         size="md"
         colorScheme="teal"
         w="full"
         type="submit"
-        marginTop="1.5em"
+        onClick={() => {
+          console.log(store.getState(), query);
+          dispatch(setFilter(query));
+        }}
       >
         {" "}
         Submit{" "}
