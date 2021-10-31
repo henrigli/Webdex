@@ -28,6 +28,8 @@ export const selectFilter = (state: RootState) => state.parameters.filter;
 export const selectMinWeight = (state: RootState) => state.parameters.minWeight;
 export const selectMaxWeight = (state: RootState) => state.parameters.maxWeight;
 export const selectSort = (state: RootState) => state.parameters.sort;
+export const selectSkip = (state: RootState) => state.parameters.skip;
+export const selectLimit = (state: RootState) => state.parameters.limit;
 
 export const {
   setFilter,
@@ -38,4 +40,10 @@ export const {
   clearMaxWeight,
   setSort,
   clearSort,
+  setSkip,
+  clearSkip,
+  setLimit,
+  clearLimit,
+  prevPage,
+  nextPage,
 } = searchSlice.actions;

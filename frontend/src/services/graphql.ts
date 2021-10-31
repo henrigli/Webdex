@@ -42,6 +42,14 @@ export const FIND_USER = gql`
   }
 `;
 
+export const GET_FAVORITES = gql`
+  query Query($name: String) {
+    user(name: $name) {
+      favorites
+    }
+  }
+`;
+
 export const POST_USER = gql`
   mutation Mutation($name: String) {
     createUser(name: $name) {
@@ -78,12 +86,15 @@ export const SEARCH_QUERY = gql`
       limit: $limit
       sort: $sort
     ) {
-      id
-      name
-      types
-      height
-      weight
-      description
-    }
+        pokemon {
+        id
+        name
+        types
+        height
+        weight
+        description
+        }
+        count
+      }
   }
 `;

@@ -6,12 +6,14 @@ import {
   useColorModeValue,
   Spacer,
   Center,
+  Icon,
 } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import { FIND_ONE } from "../services/graphql";
 import { useQuery as useGraphQuery } from "@apollo/client";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 const PokemonPage = () => {
   const params: { id: string } = useParams();
@@ -25,6 +27,27 @@ const PokemonPage = () => {
 
   if (loading) return <Loading />;
   if (error) return <Error error={error} />;
+
+  const star = (props: { isFavorite: boolean }) => {
+    const isFavorite = props.isFavorite;
+    return (
+      <IconButton
+        aria-label="Favorite"
+        icon={
+          <Icon
+            as={isFavorite ? AiFillStar : AiOutlineStar}
+            w={10}
+            h={10}
+            color="yellow.300"
+          />
+        }
+        marginTop="1em"
+        marginRight="2em"
+        float="right"
+        variant="ghost"
+      />
+    );
+  };
 
   return (
     <>
@@ -47,6 +70,7 @@ const PokemonPage = () => {
           shadow="md"
           marginTop="2em"
         >
+          {star({ isFavorite: false })}
           <Center>
             <Image
               maxW="xs"
@@ -54,7 +78,6 @@ const PokemonPage = () => {
               alignItems="center"
             />
           </Center>
-
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="orange">
