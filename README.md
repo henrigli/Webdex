@@ -47,6 +47,17 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Layout and design
 
+The website design is made using the Chakra UI component library.
+
+### Header
+
+The Header was made using the Chakra UI Flex component, which again contains a Flex component, the SmallLogin and the ColorModeSwitcher componenent. The background-color to the Header changes depending on the color mode using the const bgcolor. bgcolor uses the Chakra UI hook useColorModeValue, which allows you to choose two colors depending on the colormode selected.
+
+### ColorModeSwitcher
+
+The ColorModeSwitcher is a component from Chakra UI that supplies an easy-to-use icon-button that allows you to change the colormode, and which works with the useColorModeValue hook.
+
+
 ### Web accessibility
 
 According to the Web Accessibility Initiative it’s most efficient and effective to incorporate accessibility from the very beginning of projects, so you don’t need go back and to re-do work. Because of this we worked on making our website accessible from the start. A lot of our knowledge on this subject comes from the Web Accessibility Initiative (w3.org). We found that this source had a lot of thorough information about how we could make our website as inclusive as possible.
