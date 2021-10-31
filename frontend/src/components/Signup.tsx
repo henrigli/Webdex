@@ -25,7 +25,8 @@ const Signup = () => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [inputName, setInputName] = useState("");
   const [username, setUsername] = useState("");
-  
+
+  // if error => console.log it 🦧
   useEffect(() => {
     console.log(errorMessages);
   });
@@ -34,7 +35,7 @@ const Signup = () => {
     variables: {
       name: inputName,
     },
-    fetchPolicy: "no-cache"
+    fetchPolicy: "no-cache",
   });
 
   const handleRegistration = async () => {
@@ -44,32 +45,34 @@ const Signup = () => {
       return console.log("invalid username, please write something");
     }
 
-    postUser({ variables: { name: inputName } }).then(payload => {
+    postUser({ variables: { name: inputName } }).then((payload) => {
       if (payload.data) {
         if (payload.data.createUser.user != null) {
           setUsername(payload.data.createUser.user.name);
-          console.log(payload.data.createUser.user, payload.data.createUser.errors);
-          console.log("Username from server:", username);
+          console.log(
+            payload.data.createUser.user,
+            payload.data.createUser.errors
+          );
 
           history.push("/login");
-        }
-        else if (payload.data.createUser.errors) {
-          payload.data.createUser.errors.map((err: any) => console.log(err.message));
+        } else if (payload.data.createUser.errors) {
+          //Checks for any errorss and logs them to console.
+          payload.data.createUser.errors.map((err: any) =>
+            console.log(err.message)
+          );
           setErrorMessages(
-              payload.data.createUser.errors.map((err: any) => err.message)
-            );
+            payload.data.createUser.errors.map((err: any) => err.message)
+          );
         }
       }
     });
 
     if (loading) return "Submitting...";
     if (error) return `Submission error! ${error.message}`;
-
   };
 
   const redirect = () => {
     const name: string = data.createUser.user.name;
-    console.log(name);
   };
 
   return (
@@ -97,7 +100,9 @@ const Signup = () => {
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >
-              {errorMessages.map(err => <p>{err}</p>)}
+              {errorMessages.map((err) => (
+                <p>{err}</p>
+              ))}
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
