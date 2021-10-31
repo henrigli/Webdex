@@ -3,10 +3,11 @@ import "./App.css";
 import { FilterBox } from "./components/FilterBox";
 import { PageContent } from "./components/PageContent";
 import { PaletteContext, palettes } from "./Palette";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import PokemonPage from "./components/PokemonPage";
+import Profile from "./components/Profile";
 
 function App() {
   let palette = useColorModeValue(palettes["light"], palettes["dark"]);
@@ -25,9 +26,9 @@ function App() {
           <Route exact path="/pokemon/:id">
             <PokemonPage />
           </Route>
-          {/* <Route path="/profile">
+          <Route path="/profile">
             <Profile />
-          </Route> */}
+          </Route>
           <Route path="main">
             <Center>
               <VStack w="100%" spacing={4}>
