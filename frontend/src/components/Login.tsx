@@ -33,8 +33,10 @@ const CFaUserAlt = chakra(FaUserAlt);
 const Login: React.FC = () => {
   const reduxName = useAppSelector(selectName);
   const dispatch = useAppDispatch();
+  // local state for sending query.
   const [username, setuserName] = useState("");
 
+  // query for finding user.
   const { loading, error, data } = useQuery(FIND_USER, {
     variables: {
       name: username,
@@ -42,20 +44,20 @@ const Login: React.FC = () => {
   });
 
   const handleLogin = async () => {
-    console.log("Name is: ");
-    console.log("getting data from api");
-
     if (loading) {
       console.log("loading...");
     }
 
+    // error handling
     if (error) return console.error(error);
 
+    // TS hates reading non-existant data 👵🏻
     if (data.user != null) {
       redirect(data.user.name);
     }
   };
 
+  // redirects to frontpage and sets name for the entire application.
   const redirect = (name: string) => {
     dispatch(setName(name));
     console.log(name);

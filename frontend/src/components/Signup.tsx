@@ -27,6 +27,7 @@ const Signup = () => {
   const [inputName, setInputName] = useState("");
   const [username, setUsername] = useState("");
 
+  // if error => console.log it 🦧
   useEffect(() => {
     console.log(errorMessages);
   });
@@ -53,10 +54,10 @@ const Signup = () => {
             payload.data.createUser.user,
             payload.data.createUser.errors
           );
-          console.log("Username from server:", username);
 
           history.push("/login");
         } else if (payload.data.createUser.errors) {
+          //Checks for any errorss and logs them to console.
           payload.data.createUser.errors.map((err: any) =>
             console.log(err.message)
           );
@@ -73,7 +74,6 @@ const Signup = () => {
 
   const redirect = () => {
     const name: string = data.createUser.user.name;
-    console.log(name);
   };
 
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
