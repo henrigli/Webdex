@@ -32,7 +32,7 @@ const PokemonPage = () => {
     const isFavorite = props.isFavorite;
     return (
       <IconButton
-        aria-label="Go back"
+        aria-label="Favorite"
         icon={
           <Icon
             as={isFavorite ? AiFillStar : AiOutlineStar}
