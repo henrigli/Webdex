@@ -1,10 +1,16 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-const initialState: { filter: String; minWeight: Number; maxWeight: Number } = {
+const initialState: {
+  filter: String;
+  minWeight: Number;
+  maxWeight: Number;
+  sort: String;
+} = {
   filter: "",
   minWeight: 0,
   maxWeight: 0,
+  sort: "",
 };
 
 export const searchSlice = createSlice({
@@ -28,6 +34,12 @@ export const searchSlice = createSlice({
     },
     clearMaxWeight: (state) => {
       state.maxWeight = 0;
+    },
+    setSort: (state, action: PayloadAction<string>) => {
+      state.sort = action.payload;
+    },
+    clearSort: (state) => {
+      state.sort = "";
     },
   },
 });
