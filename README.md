@@ -42,3 +42,17 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Documentation
+
+## Layout and design
+
+### Web accessibility
+
+According to the Web Accessibility Initiative it’s most efficient and effective to incorporate accessibility from the very beginning of projects, so you don’t need go back and to re-do work. Because of this we worked on making our website accessible from the start. A lot of our knowledge on this subject comes from the Web Accessibility Initiative (w3.org). We found that this source had a lot of thorough information about how we could make our website as inclusive as possible.
+
+The first thing we focused on was text alternatives as equivalents for non-text content. We implemented short equivalents for images, including icons, buttons, and graphics. Secondly, we made labels for form controls, input, and other user interface components.
+
+Our second focus area was to make the content easily distinguishable. This is to make everything easier to see and hear. We made sure that color isn’t used as the only way of conveying information or identifying content. It was also important to us that default foreground and background color combinations provide sufficient contrast.
+
+We chose to test one aspect of web accessibility by trying to navigate it with a screen reader. Because all the developers on this project can navigate most web pages without problem, we found that we couldn’t judge very well how accessible the web page was. Testing with a screen reader helped us find spelling mistakes, check the accuracy and quality of our alternative image texts and helped us identify problems with reading order, form elements, and many other aspects of accessibility.
