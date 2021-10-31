@@ -1,4 +1,5 @@
-import { Grid, HStack, Text, Spacer } from "@chakra-ui/react";
+import { Grid, HStack, Text, Spacer, IconButton } from "@chakra-ui/react";
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "@apollo/client";
 import { client, Pokemon, SEARCH_QUERY } from "../services/graphql";
 import PokemonContainer from "./PokemonContainer";
@@ -7,15 +8,24 @@ import {
   selectMaxWeight,
   selectMinWeight,
   selectSort,
+  selectSkip,
+  selectLimit,
   useAppSelector,
+  prevPage,
+  nextPage,
 } from "../features/store";
 import { SortDropdownMenu } from "./SortDropdownMenu";
+import { useAppDispatch } from "../app/hooks";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
   const minWeight = useAppSelector(selectMinWeight);
   const maxWeight = useAppSelector(selectMaxWeight);
   const sort = useAppSelector(selectSort);
+  const skip = useAppSelector(selectSkip);
+  const limit = useAppSelector(selectLimit);
+
+  const dispatch = useAppDispatch();
 
   console.log(filter);
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
@@ -23,8 +33,8 @@ export const SearchResults = () => {
       filter: filter,
       weight_gte: minWeight, // min weight
       weight_lte: maxWeight, //max weight
-      skip: 0,
-      limit: 24,
+      skip: skip,
+      limit: limit,
       sort: sort,
     },
   });
@@ -37,14 +47,16 @@ export const SearchResults = () => {
       <HStack mb={4}>
         <SortDropdownMenu />
         <Spacer />
-        <Text>999 resultater</Text>
+        <IconButton aria-label="Previous page" icon={<ArrowBackIcon />} onClick={() => dispatch(prevPage())}> Prev </IconButton>
+        <Text fontSize="xl" >Viewing {skip + 1}-{Math.min(skip + limit, data.pokemon_search.count)} of {data.pokemon_search.count} Pokémon</Text>
+        <IconButton aria-label="Next page" icon={<ArrowForwardIcon />} onClick={() => dispatch(nextPage())}> Next </IconButton>
       </HStack>
 
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
       >
-        {data.pokemon_search.map((p: Pokemon) => (
+        {data.pokemon_search.pokemon.map((p: Pokemon) => (
           <PokemonContainer pokemon={p} />
         ))}
       </Grid>

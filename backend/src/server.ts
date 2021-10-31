@@ -16,6 +16,11 @@ type Pokemon {
   description: String,
 },
 
+type PokemonSearchResult {
+  pokemon: [Pokemon],
+  count: Int,
+}
+
 type User {
   name: String,
   favorites: [Pokemon],
@@ -36,7 +41,7 @@ type Query {
     skip: Int,
     limit: Int,
     sort: String,
-    ): [Pokemon],
+    ): PokemonSearchResult,
 
 }
 
@@ -60,19 +65,15 @@ const root = {
     return await Pokemon.findOne({ _id: args.id });
   },
   pokemon_search: async (args) => {
-    let query = Pokemon.find({ name: new RegExp(args.filter, "i") });
+    const count = await buildQuery(args).countDocuments();
 
-    if (args.type) query.where({ types: args.type });
-    if (args.height_lte) query.where("height").lte(args.height_lte);
-    if (args.height_gte) query.where("height").gte(args.height_gte);
-    if (args.weight_lte) query.where("weight").lte(args.weight_lte);
-    if (args.weight_gte) query.where("weight").gte(args.weight_gte);
-
+    const query = buildQuery(args);
     query.setOptions({ skip: args.skip, limit: args.limit });
     query.sort(args.sort || "_id");
 
-    console.log(query);
-    return await query.exec();
+    //let count = await Pokemon.count(query.getOptions());
+    const result = await query.exec();
+    return {pokemon: result, count:count};
   },
   user: async (args) => {
     return await User.findOne({ name: args.name });
@@ -100,6 +101,18 @@ const root = {
 
     return { user: newUser, errors: []};
   },
+};
+
+const buildQuery = (args) => {
+  let query = Pokemon.find({ name: new RegExp(args.filter, "i") });
+
+  if (args.type) query.where({ types: args.type });
+  if (args.height_lte) query.where("height").lte(args.height_lte);
+  if (args.height_gte) query.where("height").gte(args.height_gte);
+  if (args.weight_lte) query.where("weight").lte(args.weight_lte);
+  if (args.weight_gte) query.where("weight").gte(args.weight_gte);
+
+  return query;
 };
 
 var app = express();
