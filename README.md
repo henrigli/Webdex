@@ -80,6 +80,9 @@ Sorting is achieved using the SortDropdownMenu.tsx component, GraphQL + Apollo a
 ## GraphQL queries
 We use apollo-client to manage our graphQL queries in the frontend. This allows us to write queries using regular graphQL syntax, and pass them to a simple useQuery or useMutation function from apollo-client. The queries are all located in `frontend/src/services/graphql.ts` and can be imported everywhere in the frontend, eg. on the login and signup page. Apollo-client handles sending the request and gives 3 values, data, loading and error. using these we can tell the user if the request is on its way, if there was an error while processing the request, and finally show them the data one the request has gone through. 
 
+## Pagination
+This is implemented by simply making *skip* and *limit* available as variables in GraphQL queries. These are added to the MongoDB query to control the flow of information. On the website, the user can increase or decrease *skip* by multiples of *limit* using buttons.
+
 ## Backend
 We use express-graphql to manage our backend. To run the backend locally you first need to compile server.ts to javascript, this is done using the `tsc server.ts` command. This will compile user.ts, pokemon.ts and server.ts to javascript and render .js files for each of them. To run the backend you run `node server.js`. For this to acually have some data to handle, you need to setup a mongoDB database on your own system and populate it using the JSON file found [here.](http://it2810-06.idi.ntnu.no/pokemon.json)
 
