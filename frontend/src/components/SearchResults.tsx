@@ -27,26 +27,6 @@ export const SearchResults = () => {
   );
 };
 
-const PokemonCard = (props: { pokemon: Pokemon }) => {
-  return (
-    <GridItem colSpan={3}>
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg">
-        <p>
-          #{props.pokemon.id}: {props.pokemon.name}
-        </p>
-        <p>{props.pokemon.types.join(", ")}</p>
-        <p>
-          Height: {props.pokemon.height} m &mdash; Weight :{" "}
-          {props.pokemon.weight} kg
-        </p>
-        <p>
-          <em>{props.pokemon.description || "This is a Pokémon!"}</em>
-        </p>
-      </Box>
-    </GridItem>
-  );
-};
-
 const Loading = () => {
   return <div>Loading...</div>;
 };
