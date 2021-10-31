@@ -10,6 +10,7 @@ import {
   useAppSelector,
 } from "../features/search/searchSlice";
 import { SortDropdownMenu } from "./SortDropdownMenu";
+import { SortingButtons } from "./SortingButtons";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
@@ -35,9 +36,11 @@ export const SearchResults = () => {
   return (
     <>
       <HStack mb={4}>
+        <SortDropdownMenu />
+        <Spacer />
         <Text>999 resultater</Text>
         <Spacer />
-        <SortDropdownMenu />
+        <SortingButtons />
       </HStack>
 
       <Grid
