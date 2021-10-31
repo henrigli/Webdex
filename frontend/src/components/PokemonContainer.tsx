@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const PokemonContainer = (props: { pokemon: Pokemon }) => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
+  const bgcolorSelected = useColorModeValue("gray", "whiteAlpha.25");
   let history = useHistory();
 
   function handleClick() {
@@ -20,6 +21,7 @@ const PokemonContainer = (props: { pokemon: Pokemon }) => {
       bg={bgcolor}
       shadow="md"
       onClick={handleClick}
+      _hover={{ bg: "#ebedf0", transform: "scale(0.98)" }}
     >
       <Image
         maxW="xs"
@@ -51,11 +53,6 @@ const PokemonContainer = (props: { pokemon: Pokemon }) => {
           isTruncated
         >
           {props.pokemon.name}
-        </Box>
-
-        <Box as="i" noOfLines={3}>
-          {props.pokemon.description}
-          <Box as="span" color="gray.600" fontSize="xs"></Box>
         </Box>
 
         <Box fontSize="xs">ID: {props.pokemon.id}</Box>

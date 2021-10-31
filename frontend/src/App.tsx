@@ -15,12 +15,6 @@ function App() {
   return (
     <PaletteContext.Provider value={palette}>
       <div className="App">
-        {/* <Box id="footer" bg={bgcolor} color={"white"} boxShadow={3}>
-          <div id="footerContent">
-            <span>Made with love by group 6 </span>
-          </div>
-        </Box> */}
-
         <Switch>
           <Route path="/login">
             <Login />

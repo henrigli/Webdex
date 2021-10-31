@@ -20,7 +20,7 @@ export const Header = () => {
           letterSpacing={"tighter"}
           fontSize={{ base: "0px", sm: "0px", lg: "40px" }}
         >
-          Webdex
+          <a href="/">Webdex</a>
         </Heading>
       </Flex>
       <Spacer />
