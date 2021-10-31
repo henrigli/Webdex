@@ -9,9 +9,15 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import {
+  setMaxWeight,
+  setMinWeight,
+  useAppDispatch,
+} from "../features/search/searchSlice";
 
-export const HeightSlider = () => {
-  const [edges, setEdges] = useState([0, 100]);
+export const WeightSlider = () => {
+  const [edges, setEdges] = useState([0, 1000]);
+  const dispatch = useAppDispatch();
 
   return (
     <Box py={4}>
@@ -22,10 +28,14 @@ export const HeightSlider = () => {
       </Flex>
 
       <RangeSlider
+        max={1000}
         aria-label={["min", "max"]}
-        defaultValue={[0, 100]}
+        defaultValue={[0, 1000]}
         onChange={(val) => setEdges(val)}
-        colorScheme="teal"
+        onChangeEnd={() => {
+          dispatch(setMinWeight(edges[0]));
+          dispatch(setMaxWeight(edges[1]));
+        }}
       >
         <RangeSliderTrack>
           <RangeSliderFilledTrack />

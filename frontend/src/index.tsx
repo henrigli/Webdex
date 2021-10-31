@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { store } from "./features/name/nameSlice";
+import { store } from "./features/search/searchSlice";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { ChakraProvider } from "@chakra-ui/react";
