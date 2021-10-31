@@ -2,6 +2,8 @@ import {
   Avatar,
   Box,
   Center,
+  Grid,
+  Heading,
   Spacer,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -12,26 +14,49 @@ export const Profile = () => {
   const reduxName = useAppSelector(selectName);
 
   return (
-    <Center>
-      <Box
-        p="120"
-        borderWidth="1px"
-        borderRadius="lg"
-        bg={bgcolor}
-        shadow="md"
-        marginTop="2em"
-      >
-        <Avatar aria-label={`Avatar`} size="2xl" bg="teal.500" />
+    <>
+      <Center>
         <Box
-          fontWeight="semibold"
-          letterSpacing="wide"
-          fontSize="2xl"
-          marginTop="1em"
+          width="20em"
+          height="13em"
+          borderWidth="1px"
+          borderRadius="lg"
+          bg={bgcolor}
+          shadow="md"
+          marginTop="2em"
         >
-          {reduxName}
+          <Avatar
+            aria-label={`Avatar`}
+            size="lg"
+            bg="teal.500"
+            marginTop="1em"
+          />
+          <Box
+            fontWeight="semibold"
+            letterSpacing="wide"
+            fontSize="xl"
+            marginTop="1em"
+          >
+            {reduxName || "guest"}
+          </Box>
         </Box>
-      </Box>
-    </Center>
+      </Center>
+
+      <Heading size="md" marginTop="2em">
+        Your favorite Pokémon:
+      </Heading>
+
+      {/* Hente ut favorittpokemonene: */}
+
+      {/* <Grid
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+        gap={2}
+      >
+        {data.pokemon_search.map((p: Pokemon) => (
+          <PokemonContainer pokemon={p} />
+        ))}
+      </Grid> */}
+    </>
   );
 };
 
