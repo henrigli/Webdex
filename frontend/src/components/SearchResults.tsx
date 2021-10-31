@@ -1,4 +1,11 @@
-import { Grid, HStack, Text, Spacer, IconButton } from "@chakra-ui/react";
+import {
+  Grid,
+  HStack,
+  Text,
+  Spacer,
+  IconButton,
+  Center,
+} from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "@apollo/client";
 import { client, Pokemon, SEARCH_QUERY } from "../services/graphql";
@@ -47,9 +54,26 @@ export const SearchResults = () => {
       <HStack mb={4}>
         <SortDropdownMenu />
         <Spacer />
-        <IconButton aria-label="Previous page" icon={<ArrowBackIcon />} onClick={() => dispatch(prevPage())}> Prev </IconButton>
-        <Text fontSize="xl" >Viewing {skip + 1}-{Math.min(skip + limit, data.pokemon_search.count)} of {data.pokemon_search.count} Pokémon</Text>
-        <IconButton aria-label="Next page" icon={<ArrowForwardIcon />} onClick={() => dispatch(nextPage())}> Next </IconButton>
+        <IconButton
+          aria-label="Previous page"
+          icon={<ArrowBackIcon />}
+          onClick={() => dispatch(prevPage())}
+        >
+          {" "}
+          Prev{" "}
+        </IconButton>
+        <Text fontSize="xl">
+          Viewing {skip + 1}-{Math.min(skip + limit, data.pokemon_search.count)}{" "}
+          of {data.pokemon_search.count} Pokémon
+        </Text>
+        <IconButton
+          aria-label="Next page"
+          icon={<ArrowForwardIcon />}
+          onClick={() => dispatch(nextPage())}
+        >
+          {" "}
+          Next{" "}
+        </IconButton>
       </HStack>
 
       <Grid
@@ -60,6 +84,29 @@ export const SearchResults = () => {
           <PokemonContainer pokemon={p} />
         ))}
       </Grid>
+      <Center marginTop="2em" marginBottom="5em">
+        {/* Pagenation at the botton of the page for easier navigation */}
+        <IconButton
+          aria-label="Previous page"
+          icon={<ArrowBackIcon />}
+          onClick={() => dispatch(prevPage())}
+        >
+          {" "}
+          Prev{" "}
+        </IconButton>
+        <Text fontSize="xl" marginLeft="1em" marginRight="1em">
+          Viewing {skip + 1}-{Math.min(skip + limit, data.pokemon_search.count)}{" "}
+          of {data.pokemon_search.count} Pokémon
+        </Text>
+        <IconButton
+          aria-label="Next page"
+          icon={<ArrowForwardIcon />}
+          onClick={() => dispatch(nextPage())}
+        >
+          {" "}
+          Next{" "}
+        </IconButton>
+      </Center>
     </>
   );
 };

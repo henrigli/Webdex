@@ -34,7 +34,7 @@ export const SearchBar = () => {
         }}
       >
         {" "}
-        Submit{" "}
+        Search{" "}
       </Button>
     </FormControl>
   );
