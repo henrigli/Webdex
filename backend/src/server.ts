@@ -84,9 +84,7 @@ const root = {
     if (await User.findOne({ name: input.name })) {
       return {
         user: null,
-        errors: [
-          { message: `Username ${input.name} is already taken.` }
-        ]
+        errors: [{ message: `Username ${input.name} is already taken.` }],
       };
     }
 
@@ -94,11 +92,12 @@ const root = {
 
     // Compensate for cases where creation method returns before new user
     // can be retrieved
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // this is incredibly
+    // no bueno and we have no idea why we need to do this, but it works for some reason...🤡
 
     const newUser = await User.findOne({ name: input.name });
 
-    return { user: newUser, errors: []};
+    return { user: newUser, errors: [] };
   },
 };
 
