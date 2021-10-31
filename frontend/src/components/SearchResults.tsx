@@ -7,7 +7,7 @@ import {
   selectMaxWeight,
   selectMinWeight,
   useAppSelector,
-} from "../features/search/searchSlice";
+} from "../features/store";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
