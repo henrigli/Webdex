@@ -13,40 +13,62 @@ import {
   Avatar,
   FormControl,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 import { POST_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
 
 const Signup = () => {
-  const [username, setuserName] = useState("");
+  const history = useHistory();
+  const [errorMessages, setErrorMessages] = useState([]);
+  const [inputName, setInputName] = useState("");
+  const [username, setUsername] = useState("");
+  
+  useEffect(() => {
+    console.log(errorMessages);
+  });
 
   const [postUser, { data, loading, error }] = useMutation(POST_USER, {
     variables: {
-      name: username,
+      name: inputName,
     },
+    fetchPolicy: "no-cache"
   });
 
   const handleRegistration = async () => {
     console.log("posting data to the api...");
 
-    if (username == null) {
+    if (inputName == "") {
       return console.log("invalid username, please write something");
     }
 
-    postUser({ variables: { name: username } });
+    postUser({ variables: { name: inputName } }).then(payload => {
+      if (payload.data) {
+        if (payload.data.createUser.user != null) {
+          setUsername(payload.data.createUser.user.name);
+          console.log(payload.data.createUser.user, payload.data.createUser.errors);
+          console.log("Username from server:", username);
+
+          history.push("/login");
+        }
+        else if (payload.data.createUser.errors) {
+          payload.data.createUser.errors.map((err: any) => console.log(err.message));
+          setErrorMessages(
+              payload.data.createUser.errors.map((err: any) => err.message)
+            );
+        }
+      }
+    });
 
     if (loading) return "Submitting...";
     if (error) return `Submission error! ${error.message}`;
 
-    if (data.createUser != null) {
-      redirect();
-    }
   };
 
   const redirect = () => {
-    const name: string = data.createUser.name;
+    const name: string = data.createUser.user.name;
     console.log(name);
   };
 
@@ -75,6 +97,7 @@ const Signup = () => {
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
             >
+              {errorMessages.map(err => <p>{err}</p>)}
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
@@ -84,7 +107,7 @@ const Signup = () => {
                   <Input
                     type="text"
                     placeholder="Username"
-                    onChange={(e) => setuserName(e.target.value)}
+                    onChange={(e) => setInputName(e.target.value)}
                   />
                 </InputGroup>
               </FormControl>

@@ -45,7 +45,12 @@ export const FIND_USER = gql`
 export const POST_USER = gql`
   mutation Mutation($name: String) {
     createUser(name: $name) {
-      name
+      user {
+        name
+      }
+      errors {
+        message
+      }
     }
   }
 `;
