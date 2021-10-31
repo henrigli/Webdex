@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useAppDispatch, setSort } from "../features/search/searchSlice";
+import { useAppDispatch, setSort } from "../features/store";
 
 export const SortDropdownMenu = () => {
   const dispatch = useAppDispatch();

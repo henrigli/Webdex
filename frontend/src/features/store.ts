@@ -4,17 +4,16 @@ import { searchSlice } from "./search/searchSlice";
 import { saveName } from "./name/localStorage";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-
 export const store = configureStore({
-    reducer: {
-      logger: nameSlice.reducer,
-      parameters: searchSlice.reducer,
-    },
+  reducer: {
+    logger: nameSlice.reducer,
+    parameters: searchSlice.reducer,
+  },
 });
-  
+
 store.subscribe(() => {
-    saveName({name: store.getState().logger.name})
-})
+  saveName({ name: store.getState().logger.name });
+});
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
@@ -28,6 +27,7 @@ export const { setName, clearName } = nameSlice.actions;
 export const selectFilter = (state: RootState) => state.parameters.filter;
 export const selectMinWeight = (state: RootState) => state.parameters.minWeight;
 export const selectMaxWeight = (state: RootState) => state.parameters.maxWeight;
+export const selectSort = (state: RootState) => state.parameters.sort;
 
 export const {
   setFilter,
@@ -36,4 +36,6 @@ export const {
   clearMinWeight,
   setMaxWeight,
   clearMaxWeight,
+  setSort,
+  clearSort,
 } = searchSlice.actions;

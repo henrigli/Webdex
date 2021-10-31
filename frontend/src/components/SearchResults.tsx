@@ -9,6 +9,7 @@ import {
   selectSort,
   useAppSelector,
 } from "../features/store";
+import { SortDropdownMenu } from "./SortDropdownMenu";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
