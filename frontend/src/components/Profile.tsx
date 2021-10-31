@@ -1,3 +1,4 @@
+import { useQuery } from "@apollo/client";
 import {
   Avatar,
   Box,
@@ -6,15 +7,30 @@ import {
   Heading,
   Spacer,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { selectName, useAppSelector } from "../features/store";
+import { GET_FAVORITES, Pokemon } from "../services/graphql";
+import FavoriteContainer from "./FavoriteContainer";
+import PokemonContainer from "./PokemonContainer";
 
 export const Profile = () => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
   const reduxName = useAppSelector(selectName);
 
+  const { loading, error, data } = useQuery(GET_FAVORITES, {
+    variables: {
+      name: reduxName,
+    },
+  });
+
+  if (loading) return <Loading />;
+  if (error) return <Error error={error} />;
+
+  console.log(data);
+
   return (
-    <>
+    <VStack>
       <Center>
         <Box
           width="20em"
@@ -46,18 +62,25 @@ export const Profile = () => {
         Your favorite Pokémon:
       </Heading>
 
-      {/* Hente ut favorittpokemonene: */}
-
-      {/* <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
-        gap={2}
-      >
-        {data.pokemon_search.map((p: Pokemon) => (
-          <PokemonContainer pokemon={p} />
-        ))}
-      </Grid> */}
-    </>
+      {
+        <Grid templateColumns={"repeat(1, 1fr)"} gap={2}>
+          {data.user.favorites.map((p: Number) => (
+            <FavoriteContainer id={p} />
+          ))}
+        </Grid>
+      }
+    </VStack>
   );
+};
+
+const Loading = () => {
+  return <div>Loading...</div>;
+};
+
+const Error = (props: { error: any }) => {
+  console.log(props.error);
+
+  return <div>Error :'(</div>;
 };
 
 export default Profile;
