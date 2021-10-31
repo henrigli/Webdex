@@ -4,6 +4,7 @@ import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 import Pokemon from "./pokemon";
 import { User } from "./User";
+import { userInfo } from "os";
 
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
@@ -14,6 +15,7 @@ type Pokemon {
   weight: Float,
   types: [String],
   description: String,
+  favorites: Int,
 },
 
 type PokemonSearchResult {
@@ -23,7 +25,7 @@ type PokemonSearchResult {
 
 type User {
   name: String,
-  favorites: [Pokemon],
+  favorites: [Int],
 }
 
 type Query {
@@ -55,7 +57,9 @@ type createUserPayload {
 }
 
 type Mutation {
-  createUser(name: String): createUserPayload
+  createUser(name: String): createUserPayload,
+  addFavorite(name: String, id: Int): String,
+  removeFavorite(name: String, id: Int): String,
 }
 `);
 
@@ -76,6 +80,8 @@ const root = {
     return {pokemon: result, count:count};
   },
   user: async (args) => {
+    console.log((await User.findOne({ name: args.name })).favorites);
+
     return await User.findOne({ name: args.name });
   },
   createUser: async (input) => {
@@ -85,9 +91,7 @@ const root = {
     if (await User.findOne({ name: input.name })) {
       return {
         user: null,
-        errors: [
-          { message: `Username ${input.name} is already taken.` }
-        ]
+        errors: [{ message: `Username ${input.name} is already taken.` }],
       };
     }
 
@@ -95,11 +99,31 @@ const root = {
 
     // Compensate for cases where creation method returns before new user
     // can be retrieved
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const newUser = await User.findOne({ name: input.name });
 
-    return { user: newUser, errors: []};
+    return { user: newUser, errors: [] };
+  },
+  // add pokemon object to user favorites list
+  addFavorite: async (input) => {
+    const user = User.findOne({ name: input.name });
+
+    await User.updateOne(
+      { name: input.name },
+      { $addToSet: { favorites: input.id } }
+    );
+
+    // increment counter for # of favorites.
+    Pokemon.updateOne({ id: input.id }, { $inc: { favorites: 1 } });
+    return "Added favorite";
+  },
+  removeFavorite: async (input) => {
+    await User.updateOne(
+      { name: input.name },
+      { $pull: { favorites: input.id } }
+    );
+    return "Removed favorite";
   },
 };
 
