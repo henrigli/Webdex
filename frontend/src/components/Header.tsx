@@ -6,20 +6,16 @@ import {
   Spacer,
   Avatar,
   IconButton,
+  Link,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { useAppSelector, selectName } from "../features/store";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { UnlockIcon } from "@chakra-ui/icons";
 
 export const Header = () => {
   const reduxName = useAppSelector(selectName);
   const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
-  const history = useHistory();
-
-  function handleClick() {
-    console.log(history);
-    history.push("/profile");
-  }
 
   return (
     <Flex padding={6} bg={bgcolor} color="white" shadow="md">
@@ -37,12 +33,21 @@ export const Header = () => {
       <Box fontSize="lg" marginRight="1em" fontStyle="italic">
         Hello, {reduxName || "guest"}!
       </Box>
-      <IconButton
-        variant="ghost"
-        icon={<Avatar bg="teal.500" size="sm" />}
-        aria-label={`Go to profile`}
-        onClick={handleClick}
-      />
+      <Link color="teal.500" href="/profile">
+        <IconButton
+          variant="ghost"
+          icon={<Avatar bg="teal.500" size="sm" />}
+          aria-label={`Go to profile`}
+        />
+      </Link>
+      <Link color="teal.500" href="/login">
+        <IconButton
+          variant="ghost"
+          icon={<UnlockIcon bg="teal.500" size="sm" />}
+          aria-label={`Go to profile`}
+        />
+      </Link>
+
       <ColorModeSwitcher />
     </Flex>
   );

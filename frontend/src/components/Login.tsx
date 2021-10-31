@@ -12,12 +12,19 @@ import {
   Link,
   Avatar,
   FormControl,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
-import { useAppSelector, useAppDispatch, setName, clearName, selectName } from '../features/store';
+import {
+  useAppSelector,
+  useAppDispatch,
+  setName,
+  clearName,
+  selectName,
+} from "../features/store";
 
 import { FIND_USER } from "../services/graphql";
 
@@ -35,7 +42,7 @@ const Login: React.FC = () => {
   });
 
   const handleLogin = async () => {
-    console.log("Name is: ", )
+    console.log("Name is: ");
     console.log("getting data from api");
 
     if (loading) {
@@ -54,12 +61,14 @@ const Login: React.FC = () => {
     console.log(name);
   };
 
+  const bgcolor = useColorModeValue("white", "whiteAlpha.50");
+
   return (
     <Flex
       flexDirection="column"
       width="100wh"
       height="100vh"
-      backgroundColor="gray.200"
+      backgroundColor={bgcolor}
       justifyContent="center"
       alignItems="center"
     >
@@ -72,12 +81,7 @@ const Login: React.FC = () => {
         <Avatar bg="teal.500" />
         <Heading color="teal.400">Welcome, {reduxName}</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-          <Stack
-            spacing={4}
-            p="1rem"
-            backgroundColor="whiteAlpha.900"
-            boxShadow="md"
-          >
+          <Stack spacing={4} p="1rem" backgroundColor={bgcolor} boxShadow="md">
             <FormControl>
               <InputGroup>
                 <InputLeftElement

@@ -12,6 +12,7 @@ import {
   Link,
   Avatar,
   FormControl,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
@@ -25,7 +26,7 @@ const Signup = () => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [inputName, setInputName] = useState("");
   const [username, setUsername] = useState("");
-  
+
   useEffect(() => {
     console.log(errorMessages);
   });
@@ -34,7 +35,7 @@ const Signup = () => {
     variables: {
       name: inputName,
     },
-    fetchPolicy: "no-cache"
+    fetchPolicy: "no-cache",
   });
 
   const handleRegistration = async () => {
@@ -44,27 +45,30 @@ const Signup = () => {
       return console.log("invalid username, please write something");
     }
 
-    postUser({ variables: { name: inputName } }).then(payload => {
+    postUser({ variables: { name: inputName } }).then((payload) => {
       if (payload.data) {
         if (payload.data.createUser.user != null) {
           setUsername(payload.data.createUser.user.name);
-          console.log(payload.data.createUser.user, payload.data.createUser.errors);
+          console.log(
+            payload.data.createUser.user,
+            payload.data.createUser.errors
+          );
           console.log("Username from server:", username);
 
           history.push("/login");
-        }
-        else if (payload.data.createUser.errors) {
-          payload.data.createUser.errors.map((err: any) => console.log(err.message));
+        } else if (payload.data.createUser.errors) {
+          payload.data.createUser.errors.map((err: any) =>
+            console.log(err.message)
+          );
           setErrorMessages(
-              payload.data.createUser.errors.map((err: any) => err.message)
-            );
+            payload.data.createUser.errors.map((err: any) => err.message)
+          );
         }
       }
     });
 
     if (loading) return "Submitting...";
     if (error) return `Submission error! ${error.message}`;
-
   };
 
   const redirect = () => {
@@ -72,12 +76,14 @@ const Signup = () => {
     console.log(name);
   };
 
+  const bgcolor = useColorModeValue("white", "whiteAlpha.50");
+
   return (
     <Flex
       flexDirection="column"
       width="100wh"
       height="100vh"
-      backgroundColor="gray.200"
+      backgroundColor={bgcolor}
       justifyContent="center"
       alignItems="center"
     >
@@ -94,10 +100,12 @@ const Signup = () => {
             <Stack
               spacing={4}
               p="1rem"
-              backgroundColor="whiteAlpha.900"
+              backgroundColor={bgcolor}
               boxShadow="md"
             >
-              {errorMessages.map(err => <p>{err}</p>)}
+              {errorMessages.map((err) => (
+                <p>{err}</p>
+              ))}
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
