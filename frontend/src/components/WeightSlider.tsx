@@ -9,11 +9,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import {
-  setMaxWeight,
-  setMinWeight,
-  useAppDispatch,
-} from "../features/store";
+import { setMaxWeight, setMinWeight, useAppDispatch } from "../features/store";
 
 export const WeightSlider = () => {
   const [edges, setEdges] = useState([0, 1000]);
@@ -29,6 +25,7 @@ export const WeightSlider = () => {
 
       <RangeSlider
         max={1000}
+        colorScheme="teal"
         aria-label={["min", "max"]}
         defaultValue={[0, 1000]}
         onChange={(val) => setEdges(val)}
