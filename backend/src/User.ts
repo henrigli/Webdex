@@ -1,16 +1,16 @@
 import { connect, Document, Model, model, Schema } from "mongoose";
-// import Pokemon, { IPokemon } from "./pokemon";
-
-// connect("mongodb://localhost:27017/User");
+import Pokemon from "./pokemon";
 
 interface IUser extends Document {
   name: String | RegExp;
-  // pokemon: IPokemon[] | null;
+  favorites: [typeof Pokemon];
 }
 
 const userSchema = new Schema({
   name: { type: String, unique: true },
-  // pokemonFavorites: [Pokemon],
+  favorites: [
+    {type: Number, ref: "Pokemon"}
+  ],
 });
 
 export const User: Model<IUser> = model("User", userSchema);
