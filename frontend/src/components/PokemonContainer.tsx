@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const PokemonContainer = (props: { pokemon: Pokemon }) => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
-  const bgcolorSelected = useColorModeValue("gray", "whiteAlpha.25");
+  const bgcolorSelected = useColorModeValue("gray.50", "whiteAlpha.200");
   let history = useHistory();
 
   function handleClick() {
@@ -21,7 +21,11 @@ const PokemonContainer = (props: { pokemon: Pokemon }) => {
       bg={bgcolor}
       shadow="md"
       onClick={handleClick}
-      _hover={{ bg: "#ebedf0", transform: "scale(0.98)" }}
+      _hover={{
+        bg: bgcolorSelected,
+        transform: "scale(0.98)",
+        cursor: "pointer",
+      }}
     >
       <Image
         maxW="xs"
