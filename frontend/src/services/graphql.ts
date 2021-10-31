@@ -78,12 +78,15 @@ export const SEARCH_QUERY = gql`
       limit: $limit
       sort: $sort
     ) {
-      id
-      name
-      types
-      height
-      weight
-      description
-    }
+        pokemon {
+        id
+        name
+        types
+        height
+        weight
+        description
+        }
+        count
+      }
   }
 `;

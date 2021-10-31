@@ -37,14 +37,14 @@ export const SearchResults = () => {
       <HStack mb={4}>
         <SortDropdownMenu />
         <Spacer />
-        <Text>999 resultater</Text>
+        <Text>{data.pokemon_search.count} results</Text>
       </HStack>
 
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
       >
-        {data.pokemon_search.map((p: Pokemon) => (
+        {data.pokemon_search.pokemon.map((p: Pokemon) => (
           <PokemonContainer pokemon={p} />
         ))}
       </Grid>
