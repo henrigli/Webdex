@@ -10,10 +10,10 @@ export const SortDropdownMenu = () => {
         Sort by...
       </MenuButton>
       <MenuList>
-        <MenuItem onClick={() => dispatch(setSort("-_id"))}>ID</MenuItem>
-        <MenuItem onClick={() => dispatch(setSort("-name"))}>Name</MenuItem>
-        <MenuItem onClick={() => dispatch(setSort("-height"))}>Height</MenuItem>
-        <MenuItem onClick={() => dispatch(setSort("-weight"))}>Weight</MenuItem>
+        <MenuItem onClick={() => dispatch(setSort("id"))}>ID</MenuItem>
+        <MenuItem onClick={() => dispatch(setSort("name"))}>Name</MenuItem>
+        <MenuItem onClick={() => dispatch(setSort("height"))}>Height</MenuItem>
+        <MenuItem onClick={() => dispatch(setSort("weight"))}>Weight</MenuItem>
       </MenuList>
     </Menu>
   );
