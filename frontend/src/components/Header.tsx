@@ -7,7 +7,7 @@ import {
   Avatar,
   IconButton,
 } from "@chakra-ui/react";
-import { useAppSelector, selectName } from '../features/name/nameSlice';
+import { useAppSelector, selectName } from '../features/store';
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Header = () => {

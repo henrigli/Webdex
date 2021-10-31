@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
-import { useAppSelector, useAppDispatch, setName, clearName, selectName } from '../features/name/nameSlice';
+import { useAppSelector, useAppDispatch, setName, clearName, selectName } from '../features/store';
 
 import { FIND_USER } from "../services/graphql";
 
