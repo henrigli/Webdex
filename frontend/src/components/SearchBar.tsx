@@ -7,7 +7,7 @@ import {
   setFilter,
   useAppSelector,
   useAppDispatch,
-} from "../features/search/searchSlice";
+} from "../features/store";
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();

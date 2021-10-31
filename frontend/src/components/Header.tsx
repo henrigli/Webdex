@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   useColorModeValue,
@@ -6,9 +7,11 @@ import {
   Avatar,
   IconButton,
 } from "@chakra-ui/react";
+import { useAppSelector, selectName } from '../features/store';
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Header = () => {
+  const reduxName = useAppSelector(selectName);
   const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
 
   return (
@@ -20,10 +23,11 @@ export const Header = () => {
           letterSpacing={"tighter"}
           fontSize={{ base: "0px", sm: "0px", lg: "40px" }}
         >
-          Webdex
+          <a href="/">Webdex</a>
         </Heading>
       </Flex>
       <Spacer />
+      <Box>Hello, {reduxName || "guest"}!</Box>
       <IconButton
         variant="ghost"
         icon={<Avatar bg="teal.500" size="sm" />}

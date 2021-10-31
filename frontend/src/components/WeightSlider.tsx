@@ -13,7 +13,7 @@ import {
   setMaxWeight,
   setMinWeight,
   useAppDispatch,
-} from "../features/search/searchSlice";
+} from "../features/store";
 
 export const WeightSlider = () => {
   const [edges, setEdges] = useState([0, 1000]);

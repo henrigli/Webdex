@@ -8,8 +8,7 @@ import {
   selectMinWeight,
   selectSort,
   useAppSelector,
-} from "../features/search/searchSlice";
-import { SortDropdownMenu } from "./SortDropdownMenu";
+} from "../features/store";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
