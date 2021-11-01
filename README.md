@@ -89,4 +89,6 @@ We use express-graphql to manage our backend. To run the backend locally you fir
 The schemas' and interfaces for user and pokemon can be found in pokemon.ts and user.ts. The schema that is actually interpreted by graphQL can be found in server.ts and is made using `buildSchema`. This is where all the mutations and queries are defined. The resolvers for these can be found in the `root` object just below the `buildSchema` function. This is where the actual backend _logic_ is located, and is where we handle requests. 
 
 ## Favorites
-This is one of the things we sadly didn't have time to fully implement. The backend logic is done, and mutations and queries are written and working, but translating them into the frontend proved more time consuming than expected. The resolvers for it can be found in `root` in `server.ts`, and partial frontend code can be found on branch `20-favorite-pokemon`.
+This is one of the things we sadly didn't have time to fully implement. The backend logic is done, and mutations and queries are written and working, but translating them into the frontend proved more time-consuming than expected. The resolvers for it can be found in `root` in `server.ts`, and partial frontend code can be found on branch `20-favorite-pokemon`. 
+
+To see it working, go to the login-page. Log in as "hei", then go to the profile-page. Here you can see the favorite Pokemon for that user that have been added through queries. 
