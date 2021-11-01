@@ -16,6 +16,7 @@ import { UnlockIcon } from "@chakra-ui/icons";
 export const Header = () => {
   const reduxName = useAppSelector(selectName);
   const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
+  const loginIconColor = useColorModeValue("white", "teal");
 
   return (
     <Flex padding={6} bg={bgcolor} color="white" shadow="md">
@@ -42,9 +43,9 @@ export const Header = () => {
       </Link>
       <Link color="teal.500" href="/login">
         <IconButton
-          variant="ghost"
-          icon={<UnlockIcon bg="teal.500" size="sm" />}
-          aria-label={`Go to profile`}
+          colorScheme={loginIconColor}
+          icon={<UnlockIcon />}
+          aria-label={`Go to login`}
         />
       </Link>
 
