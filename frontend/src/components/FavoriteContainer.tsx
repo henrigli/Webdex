@@ -35,6 +35,7 @@ const FavoriteContainer = (props: { id: Number }) => {
           <Image
             maxW="xs"
             src={`http://it2810-06.idi.ntnu.no/images/large/${data.pokemon.id}.png`}
+            alt={"Picture of " + data.pokemon.name}
           />
         </Center>
         <Box p="6">
