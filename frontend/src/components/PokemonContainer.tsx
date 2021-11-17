@@ -30,6 +30,7 @@ const PokemonContainer = (props: { pokemon: Pokemon }) => {
       <Image
         maxW="xs"
         src={`http://it2810-06.idi.ntnu.no/images/large/${props.pokemon.id}.png`}
+        alt={"Picture of " + props.pokemon.name}
       />
 
       <Box p="6">
