@@ -5,12 +5,9 @@ import {
   useColorModeValue,
   Spacer,
   Center,
-  Icon,
 } from "@chakra-ui/react";
 import { FIND_ONE } from "../services/graphql";
 import { useQuery as useGraphQuery } from "@apollo/client";
-import { IconButton } from "@chakra-ui/react";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 const FavoriteContainer = (props: { id: Number }) => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
@@ -24,30 +21,8 @@ const FavoriteContainer = (props: { id: Number }) => {
   if (loading) return <Loading />;
   if (error) return <Error error={error} />;
 
-  const star = (props: { isFavorite: boolean }) => {
-    const isFavorite = props.isFavorite;
-    return (
-      <IconButton
-        aria-label="Favorite"
-        icon={
-          <Icon
-            as={isFavorite ? AiFillStar : AiOutlineStar}
-            w={10}
-            h={10}
-            color="yellow.300"
-          />
-        }
-        marginTop="1em"
-        marginRight="2em"
-        float="right"
-        variant="ghost"
-      />
-    );
-  };
-
   return (
     <>
-      <a href="/"></a>
       <Box
         maxW="xs"
         borderWidth="1px"

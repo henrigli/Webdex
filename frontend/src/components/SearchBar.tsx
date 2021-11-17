@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 import { store } from "../app/store";
-import {
-  selectFilter,
-  setFilter,
-  useAppSelector,
-  useAppDispatch,
-} from "../features/store";
+import { setFilter, useAppDispatch } from "../features/store";
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();

@@ -25,6 +25,7 @@ const Signup = () => {
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState([]);
   const [inputName, setInputName] = useState("");
+  // eslint-disable-next-line
   const [username, setUsername] = useState("");
 
   // if error => console.log it 🦧
@@ -32,6 +33,7 @@ const Signup = () => {
     console.log(errorMessages);
   });
 
+  // eslint-disable-next-line
   const [postUser, { data, loading, error }] = useMutation(POST_USER, {
     variables: {
       name: inputName,
@@ -42,7 +44,7 @@ const Signup = () => {
   const handleRegistration = async () => {
     console.log("posting data to the api...");
 
-    if (inputName == "") {
+    if (inputName === "") {
       return console.log("invalid username, please write something");
     }
 
@@ -70,10 +72,6 @@ const Signup = () => {
 
     if (loading) return "Submitting...";
     if (error) return `Submission error! ${error.message}`;
-  };
-
-  const redirect = () => {
-    const name: string = data.createUser.user.name;
   };
 
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");

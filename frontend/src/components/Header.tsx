@@ -8,7 +8,6 @@ import {
   IconButton,
   Link,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 import { useAppSelector, selectName } from "../features/store";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { UnlockIcon } from "@chakra-ui/icons";
