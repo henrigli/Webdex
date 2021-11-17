@@ -1,8 +1,6 @@
 import { Container, Flex, Heading } from "@chakra-ui/react";
 import { WeightSlider } from "./WeightSlider";
-//import { TypeCheckboxes } from "./TypeCheckboxes";
 import { SearchBar } from "./SearchBar";
-import { SortDropdownMenu } from "./SortDropdownMenu";
 
 export const FilterBox = () => {
   return (

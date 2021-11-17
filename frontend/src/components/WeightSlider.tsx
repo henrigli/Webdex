@@ -26,6 +26,7 @@ export const WeightSlider = () => {
       <RangeSlider
         max={1000}
         colorScheme="teal"
+        // eslint-disable-next-line
         aria-label={["min", "max"]}
         defaultValue={[0, 1000]}
         onChange={(val) => setEdges(val)}

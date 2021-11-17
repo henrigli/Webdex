@@ -11,7 +11,6 @@ import Profile from "./components/Profile";
 
 function App() {
   let palette = useColorModeValue(palettes["light"], palettes["dark"]);
-  const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
 
   return (
     <PaletteContext.Provider value={palette}>

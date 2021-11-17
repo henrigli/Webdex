@@ -5,14 +5,12 @@ import {
   Center,
   Grid,
   Heading,
-  Spacer,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import { selectName, useAppSelector } from "../features/store";
-import { GET_FAVORITES, Pokemon } from "../services/graphql";
+import { GET_FAVORITES } from "../services/graphql";
 import FavoriteContainer from "./FavoriteContainer";
-import PokemonContainer from "./PokemonContainer";
 
 export const Profile = () => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");

@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { useQuery } from "@apollo/client";
-import { client, Pokemon, SEARCH_QUERY } from "../services/graphql";
+import { Pokemon, SEARCH_QUERY } from "../services/graphql";
 import PokemonContainer from "./PokemonContainer";
 import {
   selectFilter,

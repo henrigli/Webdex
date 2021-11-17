@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   Flex,
   Heading,
@@ -14,15 +14,12 @@ import {
   FormControl,
   useColorModeValue,
 } from "@chakra-ui/react";
-
 import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
-import { Redirect } from "react-router-dom";
 import {
   useAppSelector,
   useAppDispatch,
   setName,
-  clearName,
   selectName,
 } from "../features/store";
 

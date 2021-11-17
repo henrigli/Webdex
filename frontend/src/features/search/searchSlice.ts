@@ -1,5 +1,4 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {
   filter: string;
@@ -62,6 +61,6 @@ export const searchSlice = createSlice({
     },
     nextPage: (state) => {
       state.skip = state.skip + state.limit;
-    }
+    },
   },
 });
