@@ -4,19 +4,18 @@ import {
   Heading,
   useColorModeValue,
   Spacer,
-  Avatar,
   IconButton,
   Link,
 } from "@chakra-ui/react";
-import { useAppSelector, selectName } from "../features/store";
+import { useAppSelector, useAppDispatch, selectName, logOut } from "../features/store";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { UnlockIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
+import { RiLogoutBoxRLine } from "react-icons/ri"
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const reduxName = useAppSelector(selectName);
   const bgcolor = useColorModeValue("teal", "whiteAlpha.50");
-  const loginIconColor = useColorModeValue("white", "teal");
 
   return (
     <Flex padding={6} bg={bgcolor} color="white" shadow="md">
@@ -41,11 +40,16 @@ export const Header = () => {
           aria-label={`Go to profile`}
         />
       </Link>
-      <Link href="/login">
+      <Link
+        href="/"
+        onClick={() => {
+          dispatch(logOut())
+        }}
+      >
         <IconButton
           variant="ghost"
-          icon={<UnlockIcon />}
-          aria-label={`Go to login`}
+          icon={<RiLogoutBoxRLine />}
+          aria-label="Log out"
         />
       </Link>
 
