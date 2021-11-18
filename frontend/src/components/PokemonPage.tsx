@@ -37,7 +37,9 @@ const PokemonPage = () => {
     },
   });
 
+  // For this mutation, we only need the request function, not the response.
   const [updateServerFavorite] = useMutation(
+    // Both possible mutations have the same input and can be used interchangably.
     isFavorite ? REMOVE_FAVORITE : ADD_FAVORITE, {
       variables: { name: reduxName, id: id },
       fetchPolicy: "no-cache"
@@ -46,6 +48,7 @@ const PokemonPage = () => {
   const updateFavorite = () => {
     updateServerFavorite()
       .then(() => {
+        // These Redux functions can also be used interchangably.
         dispatch((isFavorite ? removeFavorite : addFavorite)(id))
       })
       .catch(err => alert(err));

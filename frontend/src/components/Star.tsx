@@ -18,6 +18,8 @@ export const Star = (props: { isFavorite: boolean, onClick: () => void}) => {
       marginRight="2em"
       float="right"
       variant="ghost"
+      // onClick is passed from the parent element (PokemonPage) to let
+      // this remain a simple component with no server requests.
       onClick={props.onClick}
     />
   );
