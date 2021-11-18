@@ -1,15 +1,5 @@
 import { useQuery } from "@apollo/client";
-import {
-  Avatar,
-  Box,
-  Center,
-  Divider,
-  Grid,
-  Heading,
-  Stack,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Divider, Grid, Heading, VStack } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { selectName, useAppSelector } from "../features/store";
 import { GET_FAVORITES } from "../services/graphql";
@@ -17,7 +7,6 @@ import FavoriteContainer from "./FavoriteContainer";
 
 export const Profile = () => {
   const history = useHistory();
-  const bgcolor = useColorModeValue("white", "whiteAlpha.50");
   const reduxName = useAppSelector(selectName);
 
   if (!reduxName) history.push("/login");
