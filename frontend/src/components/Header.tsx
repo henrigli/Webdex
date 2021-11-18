@@ -11,6 +11,7 @@ import {
 import { useAppSelector, selectName } from "../features/store";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { UnlockIcon } from "@chakra-ui/icons";
+import { AiOutlineUser } from "react-icons/ai";
 
 export const Header = () => {
   const reduxName = useAppSelector(selectName);
@@ -30,19 +31,19 @@ export const Header = () => {
         </Heading>
       </Flex>
       <Spacer />
-      <Box fontSize="lg" marginRight="1em" fontStyle="italic">
+      <Box fontSize="lg" marginRight="1em" mt={1} fontStyle="italic">
         Hello, {reduxName || "guest"}!
       </Box>
-      <Link color="teal.500" href="/profile">
+      <Link href="/profile">
         <IconButton
           variant="ghost"
-          icon={<Avatar bg="teal.500" size="sm" />}
+          icon={<AiOutlineUser fontSize="1.5rem" />}
           aria-label={`Go to profile`}
         />
       </Link>
-      <Link color="teal.500" href="/login">
+      <Link href="/login">
         <IconButton
-          colorScheme={loginIconColor}
+          variant="ghost"
           icon={<UnlockIcon />}
           aria-label={`Go to login`}
         />
