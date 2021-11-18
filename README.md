@@ -47,10 +47,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # Changes for project 4
 
-## Added testing
-
-
-
 ## Improved accessibility
 We got feedback that the images were not as accessible as they shoud because of a lack of alt-tag, so we added an alt-tag to all images that says "Picture of " and the Pokémon-name. 
 
@@ -84,8 +80,7 @@ onClick={() => {
 
 
 
-# project 3:
-
+# Project 3:
 
 ## Layout and design
 
