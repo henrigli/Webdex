@@ -21,8 +21,8 @@ import {
   prevPage,
   nextPage,
 } from "../features/store";
+import { useAppDispatch } from "../features/store";
 import { SortDropdownMenu } from "./SortDropdownMenu";
-import { useAppDispatch } from "../app/hooks";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
@@ -34,7 +34,6 @@ export const SearchResults = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log(filter);
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     variables: {
       filter: filter,
@@ -81,7 +80,7 @@ export const SearchResults = () => {
         gap={2}
       >
         {data.pokemon_search.pokemon.map((p: Pokemon) => (
-          <PokemonContainer pokemon={p} />
+          <PokemonContainer key={p.id.toString()} pokemon={p} />
         ))}
       </Grid>
       <Center marginTop="2em" marginBottom="5em">

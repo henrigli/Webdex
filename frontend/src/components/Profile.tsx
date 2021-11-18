@@ -20,8 +20,6 @@ export const Profile = () => {
   if (loading) return <Loading />;
   if (error) return <Error error={error} />;
 
-  console.log(data);
-
   return (
     <VStack>
       <Heading size="xl" pt={10} pb={3}>
@@ -34,7 +32,7 @@ export const Profile = () => {
         gap={2}
       >
         {data.user.favorites.map((p: Number) => (
-          <FavoriteContainer id={p} />
+          <FavoriteContainer key={p.toString()} id={p} />
         ))}
       </Grid>
     </VStack>
