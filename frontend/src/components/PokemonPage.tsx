@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   Box,
   Image,
@@ -6,48 +6,58 @@ import {
   useColorModeValue,
   Spacer,
   Center,
-  Icon,
 } from "@chakra-ui/react";
+import {
+  selectFavorites,
+  selectName,
+  useAppSelector,
+  addFavorite,
+  removeFavorite,
+  useAppDispatch
+} from "../features/store";
 import { useParams } from "react-router";
-import { FIND_ONE } from "../services/graphql";
-import { useQuery as useGraphQuery } from "@apollo/client";
+import { ADD_FAVORITE, FIND_ONE, REMOVE_FAVORITE } from "../services/graphql";
+import { useMutation, useQuery } from "@apollo/client";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { Star } from "./Star";
 
 const PokemonPage = () => {
   const params: { id: string } = useParams();
+  const id = parseInt(params.id);
+  const reduxFaves = useAppSelector(selectFavorites);
+  const reduxName = useAppSelector(selectName);
+  const isFavorite = reduxFaves.includes(id);
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
-  console.log();
-  const { loading, error, data } = useGraphQuery(FIND_ONE, {
+  const dispatch = useAppDispatch();
+
+  const { loading, error, data } = useQuery(FIND_ONE, {
     variables: {
-      id: parseInt(params.id),
+      id: id,
     },
   });
 
-  if (loading) return <Loading />;
-  if (error) return <Error error={error} />;
+  // For this mutation, we only need the request function, not the response.
+  const [updateServerFavorite] = useMutation(
+    // Both possible mutations have the same input and can be used interchangably.
+    isFavorite ? REMOVE_FAVORITE : ADD_FAVORITE, {
+      variables: { name: reduxName, id: id },
+      fetchPolicy: "no-cache"
+    });
 
-  const star = (props: { isFavorite: boolean }) => {
-    const isFavorite = props.isFavorite;
-    return (
-      <IconButton
-        aria-label="Favorite"
-        icon={
-          <Icon
-            as={isFavorite ? AiFillStar : AiOutlineStar}
-            w={10}
-            h={10}
-            color="yellow.300"
-          />
-        }
-        marginTop="1em"
-        marginRight="2em"
-        float="right"
-        variant="ghost"
-      />
-    );
+  const updateFavorite = () => {
+    updateServerFavorite()
+      .then(() => {
+        // These Redux functions can also be used interchangably.
+        dispatch((isFavorite ? removeFavorite : addFavorite)(id))
+      })
+      .catch(err => alert(err));
   };
+
+  useEffect(() => {});
+
+  if (loading) return <Box>Loading...</Box>;
+  if (error) return <Box>{error.name}: {error.message} :(</Box>;
 
   return (
     <>
@@ -70,7 +80,10 @@ const PokemonPage = () => {
           shadow="md"
           marginTop="2em"
         >
-          {star({ isFavorite: false })}
+          <Star
+            isFavorite={isFavorite}
+            onClick={updateFavorite}
+          />
           <Center>
             <Image
               maxW="xs"
@@ -117,16 +130,6 @@ const PokemonPage = () => {
       </Center>
     </>
   );
-};
-
-const Loading = () => {
-  return <div>Loading...</div>;
-};
-
-const Error = (props: { error: any }) => {
-  console.log(props.error);
-
-  return <div>Error :'(</div>;
 };
 
 export default PokemonPage;

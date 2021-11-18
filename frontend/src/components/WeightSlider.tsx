@@ -9,7 +9,12 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { setMaxWeight, setMinWeight, useAppDispatch } from "../features/store";
+import {
+  clearSkip,
+  setMaxWeight,
+  setMinWeight,
+  useAppDispatch,
+} from "../features/store";
 
 export const WeightSlider = () => {
   const [edges, setEdges] = useState([0, 1000]);
@@ -33,6 +38,7 @@ export const WeightSlider = () => {
         onChangeEnd={() => {
           dispatch(setMinWeight(edges[0]));
           dispatch(setMaxWeight(edges[1]));
+          dispatch(clearSkip());
         }}
       >
         <RangeSliderTrack>
