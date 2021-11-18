@@ -61,7 +61,14 @@ export const Profile = () => {
       </Heading>
 
       {
-        <Grid templateColumns={"repeat(1, 1fr)"} gap={2}>
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+          gap={2}
+        >
           {data.user.favorites.map((p: Number) => (
             <FavoriteContainer id={p} />
           ))}
