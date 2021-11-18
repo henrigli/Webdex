@@ -7,10 +7,15 @@ import {
   IconButton,
   Link,
 } from "@chakra-ui/react";
-import { useAppSelector, useAppDispatch, selectName, logOut } from "../features/store";
+import {
+  useAppSelector,
+  useAppDispatch,
+  selectName,
+  logOut,
+} from "../features/store";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { AiOutlineUser } from "react-icons/ai";
-import { RiLogoutBoxRLine } from "react-icons/ri"
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +35,13 @@ export const Header = () => {
         </Heading>
       </Flex>
       <Spacer />
-      <Box fontSize="lg" marginRight="1em" mt={1} fontStyle="italic">
+      <Box
+        fontSize="lg"
+        marginRight="1em"
+        mt={1}
+        fontStyle="italic"
+        id={"helloUser"}
+      >
         Hello, {reduxName || "guest"}!
       </Box>
       <Link href="/profile">
@@ -40,18 +51,21 @@ export const Header = () => {
           aria-label={`Go to profile`}
         />
       </Link>
-    {reduxName ? <Link
-        href="/"
-        onClick={() => {
-          dispatch(logOut())
-        }}
-      >
-        <IconButton
-          variant="ghost"
-          icon={<RiLogoutBoxRLine />}
-          aria-label="Log out"
-        />
-      </Link> : null}
+      {reduxName ? (
+        <Link
+          href="/"
+          onClick={() => {
+            dispatch(logOut());
+          }}
+        >
+          <IconButton
+            variant="ghost"
+            icon={<RiLogoutBoxRLine />}
+            aria-label="Log out"
+            id={"logout"}
+          />
+        </Link>
+      ) : null}
 
       <ColorModeSwitcher />
     </Flex>
