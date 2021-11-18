@@ -25,12 +25,14 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("login", (username) => {
-  cy.get('[href="/login"] > .chakra-button').click();
+  cy.get(".chakra-link").click();
   cy.get("#field-2").click().type(username);
   cy.get(".chakra-stack > .chakra-button").click();
   cy.get(".css-i98rio").contains(username).should("exist");
+  cy.get(".css-1yb07p2 > .chakra-heading").click();
 });
 
 Cypress.Commands.add("logout", () => {
-  cy.get('[href="/profile"] > .chakra-button').click();
+  cy.get(":nth-child(5) > .chakra-button").click();
+  cy.get(".css-i98rio").contains("guest").should("exist");
 });
