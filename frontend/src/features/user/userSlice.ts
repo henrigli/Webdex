@@ -3,7 +3,7 @@ import { loadName } from "./localStorage";
 
 const initialState: { name: String, favorites: number[] } = loadName();
 
-export const nameSlice = createSlice({
+export const userSlice = createSlice({
   name: "name",
   initialState,
   reducers: {
