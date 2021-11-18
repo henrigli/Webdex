@@ -40,7 +40,7 @@ export const Header = () => {
           aria-label={`Go to profile`}
         />
       </Link>
-      <Link
+    {reduxName ? <Link
         href="/"
         onClick={() => {
           dispatch(logOut())
@@ -51,7 +51,7 @@ export const Header = () => {
           icon={<RiLogoutBoxRLine />}
           aria-label="Log out"
         />
-      </Link>
+      </Link> : null}
 
       <ColorModeSwitcher />
     </Flex>
