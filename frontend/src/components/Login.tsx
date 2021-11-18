@@ -15,12 +15,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { FaUserAlt } from "react-icons/fa";
 import {
-  useAppSelector,
   useAppDispatch,
-  setName,
-  selectName,
+  logIn,
 } from "../features/store";
 
 import { FIND_USER } from "../services/graphql";
@@ -28,10 +27,11 @@ import { FIND_USER } from "../services/graphql";
 const CFaUserAlt = chakra(FaUserAlt);
 
 const Login: React.FC = () => {
-  const reduxName = useAppSelector(selectName);
+  const history = useHistory();
   const dispatch = useAppDispatch();
   // local state for sending query.
   const [username, setuserName] = useState("");
+  const bgcolor = useColorModeValue("white", "whiteAlpha.50");
 
   // query for finding user.
   const { loading, error, data } = useQuery(FIND_USER, {
@@ -46,21 +46,21 @@ const Login: React.FC = () => {
     }
 
     // error handling
-    if (error) return console.error(error);
+    if (error) console.error(error);
 
     // TS hates reading non-existant data 👵🏻
-    if (data.user != null) {
-      redirect(data.user.name);
+    if (data && data.user) {
+      redirect(data.user)
+    } else {
+      alert("There is no user with the username \"" + username + "\"")
     }
   };
 
-  // redirects to frontpage and sets name for the entire application.
-  const redirect = (name: string) => {
-    dispatch(setName(name));
-    console.log(name);
+  // Logs in and redirects to profile
+  const redirect = (user: { name: string, favorites: number[] }) => {
+    dispatch(logIn(user));
+    history.push("/profile");
   };
-
-  const bgcolor = useColorModeValue("white", "whiteAlpha.50");
 
   return (
     <Flex
@@ -78,7 +78,7 @@ const Login: React.FC = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome, {reduxName}</Heading>
+        <Heading color="teal.400">Welcome back</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <Stack spacing={4} p="1rem" backgroundColor={bgcolor} boxShadow="md">
             <FormControl>
