@@ -50,6 +50,18 @@ export const GET_FAVORITES = gql`
   }
 `;
 
+export const ADD_FAVORITE = gql`
+mutation Mutation ($name: String, $id: Int) {
+  addFavorite(name: $name, id: $id)
+}
+`;
+
+export const REMOVE_FAVORITE = gql`
+mutation Mutation ($name: String, $id: Int) {
+  removeFavorite(name: $name, id: $id)
+}
+`;
+
 export const POST_USER = gql`
   mutation Mutation($name: String) {
     createUser(name: $name) {
