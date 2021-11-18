@@ -3,8 +3,10 @@ import {
   Avatar,
   Box,
   Center,
+  Divider,
   Grid,
   Heading,
+  Stack,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
@@ -33,51 +35,19 @@ export const Profile = () => {
 
   return (
     <VStack>
-      <Center>
-        <Box
-          width="20em"
-          height="13em"
-          borderWidth="1px"
-          borderRadius="lg"
-          bg={bgcolor}
-          shadow="md"
-          marginTop="2em"
-        >
-          <Avatar
-            aria-label={`Avatar`}
-            size="lg"
-            bg="teal.500"
-            marginTop="1em"
-          />
-          <Box
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xl"
-            marginTop="1em"
-          >
-            {reduxName || "guest"}
-          </Box>
-        </Box>
-      </Center>
-
-      <Heading size="md" marginTop="2em">
-        Your favorite Pokémon:
+      <Heading size="xl" pt={10} pb={3}>
+        Favorite Pokémon of {reduxName}
       </Heading>
-
-      {
-        <Grid
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
-          gap={2}
-        >
-          {data.user.favorites.map((p: Number) => (
-            <FavoriteContainer id={p} />
-          ))}
-        </Grid>
-      }
+      <Divider />
+      <Grid
+        pt={5}
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+        gap={2}
+      >
+        {data.user.favorites.map((p: Number) => (
+          <FavoriteContainer id={p} />
+        ))}
+      </Grid>
     </VStack>
   );
 };
