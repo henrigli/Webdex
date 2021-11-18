@@ -11,18 +11,23 @@ export const saveName = (state: { name: String }) => {
   }
 };
 
-export const loadName = (): { name: String } => {
+export const loadName = (): { name: String, favorites: [] } => {
   try {
     const serializedName = localStorage.getItem("name");
 
     // eslint-disable-next-line
     if (serializedName == undefined) {
-      return { name: "" };
+      return { name: "", favorites: []};
     }
 
-    return JSON.parse(serializedName);
+    const parsed = JSON.parse(serializedName);
+
+    return {
+      name: parsed.name || "",
+      favorites: parsed.favorites || []
+    };
   } catch (err) {
     console.log(err);
-    return { name: "" };
+    return { name: "", favorites: [] };
   }
 };

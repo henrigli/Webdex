@@ -22,7 +22,16 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const selectName = (state: RootState) => state.logger.name;
-export const { setName, clearName } = nameSlice.actions;
+export const selectFavorites = (state: RootState) => state.logger.favorites;
+
+export const {
+  setName,
+  clearName,
+  setFavorites,
+  clearFavorites,
+  addFavorite,
+  removeFavorite
+} = nameSlice.actions;
 
 export const selectFilter = (state: RootState) => state.parameters.filter;
 export const selectMinWeight = (state: RootState) => state.parameters.minWeight;
