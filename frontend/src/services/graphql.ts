@@ -38,6 +38,7 @@ export const FIND_USER = gql`
   query Query($name: String) {
     user(name: $name) {
       name
+      favorites
     }
   }
 `;

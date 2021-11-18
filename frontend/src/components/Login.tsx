@@ -21,6 +21,7 @@ import {
   useAppDispatch,
   setName,
   selectName,
+  setFavorites,
 } from "../features/store";
 
 import { FIND_USER } from "../services/graphql";
@@ -50,14 +51,15 @@ const Login: React.FC = () => {
 
     // TS hates reading non-existant data 👵🏻
     if (data.user != null) {
-      redirect(data.user.name);
+      redirect(data.user);
     }
   };
 
   // redirects to frontpage and sets name for the entire application.
-  const redirect = (name: string) => {
-    dispatch(setName(name));
-    console.log(name);
+  const redirect = (user: { name: string, favorites: number[] }) => {
+    dispatch(setName(user.name));
+    dispatch(setFavorites(user.favorites))
+    console.log(user);
   };
 
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
