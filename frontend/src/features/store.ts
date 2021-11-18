@@ -28,10 +28,8 @@ export const selectName = (state: RootState) => state.user.name;
 export const selectFavorites = (state: RootState) => state.user.favorites;
 
 export const {
-  setName,
-  clearName,
-  setFavorites,
-  clearFavorites,
+  logIn,
+  logOut,
   addFavorite,
   removeFavorite
 } = userSlice.actions;

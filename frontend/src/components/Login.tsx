@@ -19,9 +19,8 @@ import { FaUserAlt } from "react-icons/fa";
 import {
   useAppSelector,
   useAppDispatch,
-  setName,
+  logIn,
   selectName,
-  setFavorites,
 } from "../features/store";
 
 import { FIND_USER } from "../services/graphql";
@@ -57,9 +56,7 @@ const Login: React.FC = () => {
 
   // redirects to frontpage and sets name for the entire application.
   const redirect = (user: { name: string, favorites: number[] }) => {
-    dispatch(setName(user.name));
-    dispatch(setFavorites(user.favorites))
-    console.log(user);
+    dispatch(logIn(user));
   };
 
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");

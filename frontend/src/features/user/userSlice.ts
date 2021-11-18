@@ -7,16 +7,12 @@ export const userSlice = createSlice({
   name: "name",
   initialState,
   reducers: {
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+    logIn: (state, action: PayloadAction<{name: string, favorites: number[]}>) => {
+      state.name = action.payload.name;
+      state.favorites = action.payload.favorites;
     },
-    clearName: (state) => {
+    logOut: (state) => {
       state.name = "";
-    },
-    setFavorites: (state, action: PayloadAction<number[]>) => {
-      state.favorites = action.payload;
-    },
-    clearFavorites: (state) => {
       state.favorites = [];
     },
     addFavorite: (state, action: PayloadAction<number>) => {
