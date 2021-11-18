@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 import { store } from "../app/store";
-import { setFilter, useAppDispatch } from "../features/store";
+import { clearSkip, setFilter, useAppDispatch } from "../features/store";
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +26,7 @@ export const SearchBar = () => {
         onClick={() => {
           console.log(store.getState(), query);
           dispatch(setFilter(query));
+          dispatch(clearSkip());
         }}
       >
         {" "}
