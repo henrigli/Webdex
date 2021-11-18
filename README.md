@@ -43,7 +43,49 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-# Documentation
+# **Documentation**
+
+# Changes for project 4
+
+## Added testing
+
+
+
+## Improved accessibility
+We got feedback that the images were not as accessible as they shoud because of a lack of alt-tag, so we added an alt-tag to all images that says "Picture of " and the Pokémon-name. 
+
+## Updated icons in Header
+Some users found the icons in the Header confusing, especially the login-icon (an unlocked padlock). We therefore removed the login-icon, replaced it with a *logout*-icon which logs out the user and then redirects the user to the login-menu. We found this to be a more intuative solution. 
+
+## Favorites-functionality
+In project 3 we did not manage to finish the *favorites*-functionality in time. Although we did have functioning backend-logic, the user could not use the "Star"-button to add new favorites to their profile. In project 4 we fixed this. We made it so the user could press the "Star"-button (and change the star-icon from empty to full) and have the Pokémon appear on the users profile-page. The user can also press the "Star"-button again to remove the Pokémon from their favorites.
+
+## Fixes in pagination:
+In project 3 we had a bug where if you updated your search query you would not be sent back to page 1 of the search result. This resulted in users having to scroll through several empty pages until they got to page 1 depending on what page they were on, and how many pokemon the new query returned. This turned out to be a relatively simple fix, as all we needed to do was add an extra dispatch to the onClick and onChange of the submit button and weight-slider. 
+
+Before:
+```javascript
+onClick={() => {
+    dispatch(setFilter(query));
+    }
+}
+```
+
+After:
+```javascript
+onClick={() => {
+    dispatch(setFilter(query));
+    dispatch(clearSkip());
+    }
+}
+```
+
+## Testing:
+
+
+
+# project 3:
+
 
 ## Layout and design
 
