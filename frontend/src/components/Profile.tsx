@@ -8,13 +8,17 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 import { selectName, useAppSelector } from "../features/store";
 import { GET_FAVORITES } from "../services/graphql";
 import FavoriteContainer from "./FavoriteContainer";
 
 export const Profile = () => {
+  const history = useHistory();
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
   const reduxName = useAppSelector(selectName);
+
+  if (!reduxName) history.push("/login");
 
   const { loading, error, data } = useQuery(GET_FAVORITES, {
     variables: {
@@ -61,7 +65,14 @@ export const Profile = () => {
       </Heading>
 
       {
-        <Grid templateColumns={"repeat(1, 1fr)"} gap={2}>
+        <Grid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+          gap={2}
+        >
           {data.user.favorites.map((p: Number) => (
             <FavoriteContainer id={p} />
           ))}

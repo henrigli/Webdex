@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import { logIn, useAppDispatch } from "../features/store";
 import { POST_USER } from "../services/graphql";
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -25,6 +26,7 @@ const Signup = () => {
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState([]);
   const [inputName, setInputName] = useState("");
+  const dispatch = useAppDispatch();
   // eslint-disable-next-line
   const [username, setUsername] = useState("");
 
@@ -57,7 +59,8 @@ const Signup = () => {
             payload.data.createUser.errors
           );
 
-          history.push("/login");
+          dispatch(logIn(payload.data.createUser.user))
+          history.push("/profile");
         } else if (payload.data.createUser.errors) {
           //Checks for any errorss and logs them to console.
           payload.data.createUser.errors.map((err: any) =>
@@ -92,7 +95,7 @@ const Signup = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Heading color="teal.400">Welcome, new user</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>
             <Stack

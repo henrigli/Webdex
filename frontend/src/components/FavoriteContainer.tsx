@@ -8,10 +8,17 @@ import {
 } from "@chakra-ui/react";
 import { FIND_ONE } from "../services/graphql";
 import { useQuery as useGraphQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 const FavoriteContainer = (props: { id: Number }) => {
   const bgcolor = useColorModeValue("white", "whiteAlpha.50");
-  console.log();
+  const bgcolorSelected = useColorModeValue("gray.50", "whiteAlpha.200");
+  let history = useHistory();
+
+  function handleClick() {
+    history.push(`/pokemon/${props.id}`);
+  }
+
   const { loading, error, data } = useGraphQuery(FIND_ONE, {
     variables: {
       id: props.id,
@@ -30,6 +37,12 @@ const FavoriteContainer = (props: { id: Number }) => {
         overflow="hidden"
         bg={bgcolor}
         shadow="md"
+        onClick={handleClick}
+        _hover={{
+          bg: bgcolorSelected,
+          transform: "scale(0.98)",
+          cursor: "pointer",
+        }}
       >
         <Center>
           <Image

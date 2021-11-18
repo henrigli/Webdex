@@ -1,18 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { nameSlice } from "./name/nameSlice";
+import { userSlice } from "./user/userSlice";
 import { searchSlice } from "./search/searchSlice";
-import { saveName } from "./name/localStorage";
+import { saveUser } from "./user/localStorage";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
-    logger: nameSlice.reducer,
+    user: userSlice.reducer,
     parameters: searchSlice.reducer,
   },
 });
 
 store.subscribe(() => {
-  saveName({ name: store.getState().logger.name });
+  saveUser({
+    name: store.getState().user.name,
+    favorites: store.getState().user.favorites
+  });
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -21,17 +24,15 @@ export type RootState = ReturnType<typeof store.getState>;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export const selectName = (state: RootState) => state.logger.name;
-export const selectFavorites = (state: RootState) => state.logger.favorites;
+export const selectName = (state: RootState) => state.user.name;
+export const selectFavorites = (state: RootState) => state.user.favorites;
 
 export const {
-  setName,
-  clearName,
-  setFavorites,
-  clearFavorites,
+  logIn,
+  logOut,
   addFavorite,
   removeFavorite
-} = nameSlice.actions;
+} = userSlice.actions;
 
 export const selectFilter = (state: RootState) => state.parameters.filter;
 export const selectMinWeight = (state: RootState) => state.parameters.minWeight;
