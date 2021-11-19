@@ -86,6 +86,8 @@ onClick={() => {
 
 One thing we did not manage to finish in time for project 3 was testing. Therefore we chose to finish them in project 4. For end-to-end testing we have used the testing framework Cypress. Cypress takes snapshots while the test runs to give full control and enables us to debug directly in Developer Tools. We have tested functionality for signup and login, search, favoriting a Pokemon among other things. To test the signup-functionality we first navigate to the signup-page, then we type in a randomly generated username and click «sign up». Afterwords we check if the username we typed in is displayed in the header.
 
+While our Cypress tests cover all uses we deem necessary, we also have a few unit tests of key components in addition to this. As unit tests finish quickly and can be run without a connected server, they are a good supplement to the more complete E2E testing.
+
 # Project 3:
 
 ## Layout and design
