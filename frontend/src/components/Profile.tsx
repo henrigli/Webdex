@@ -15,6 +15,7 @@ export const Profile = () => {
     variables: {
       name: reduxName,
     },
+    fetchPolicy: "no-cache"
   });
 
   if (loading) return <Loading />;
