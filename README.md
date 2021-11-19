@@ -48,18 +48,23 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 # Changes for project 4
 
 ## Improved accessibility
-We got feedback that the images were not as accessible as they shoud because of a lack of alt-tag, so we added an alt-tag to all images that says "Picture of " and the Pokémon-name. 
+
+We got feedback that the images were not as accessible as they shoud because of a lack of alt-tag, so we added an alt-tag to all images that says "Picture of " and the Pokémon-name.
 
 ## Updated icons in Header
-Some users found the icons in the Header confusing, especially the login-icon (an unlocked padlock). We therefore removed the login-icon, replaced it with a *logout*-icon which logs out the user and then redirects the user to the login-menu. We found this to be a more intuative solution. 
+
+Some users found the icons in the Header confusing, especially the login-icon (an unlocked padlock). We therefore removed the login-icon, replaced it with a _logout_-icon which logs out the user and then redirects the user to the login-menu. We found this to be a more intuative solution.
 
 ## Favorites-functionality
-In project 3 we did not manage to finish the *favorites*-functionality in time. Although we did have functioning backend-logic, the user could not use the "Star"-button to add new favorites to their profile. In project 4 we fixed this. We made it so the user could press the "Star"-button (and change the star-icon from empty to full) and have the Pokémon appear on the users profile-page. The user can also press the "Star"-button again to remove the Pokémon from their favorites.
+
+In project 3 we did not manage to finish the _favorites_-functionality in time. Although we did have functioning backend-logic, the user could not use the "Star"-button to add new favorites to their profile. In project 4 we fixed this. We made it so the user could press the "Star"-button (and change the star-icon from empty to full) and have the Pokémon appear on the users profile-page. The user can also press the "Star"-button again to remove the Pokémon from their favorites.
 
 ## Fixes in pagination:
-In project 3 we had a bug where if you updated your search query you would not be sent back to page 1 of the search result. This resulted in users having to scroll through several empty pages until they got to page 1 depending on what page they were on, and how many pokemon the new query returned. This turned out to be a relatively simple fix, as all we needed to do was add an extra dispatch to the onClick and onChange of the submit button and weight-slider. 
+
+In project 3 we had a bug where if you updated your search query you would not be sent back to page 1 of the search result. This resulted in users having to scroll through several empty pages until they got to page 1 depending on what page they were on, and how many pokemon the new query returned. This turned out to be a relatively simple fix, as all we needed to do was add an extra dispatch to the onClick and onChange of the submit button and weight-slider.
 
 Before:
+
 ```javascript
 onClick={() => {
     dispatch(setFilter(query));
@@ -68,6 +73,7 @@ onClick={() => {
 ```
 
 After:
+
 ```javascript
 onClick={() => {
     dispatch(setFilter(query));
@@ -78,7 +84,7 @@ onClick={() => {
 
 ## Testing:
 
-
+One thing we did not manage to finish in time for project 3 was testing. Therefore we chose to finish them in project 4. For end-to-end testing we have used the testing framework Cypress. Cypress takes snapshots while the test runs to give full control and enables us to debug directly in Developer Tools. We have tested functionality for signup and login, search, favoriting a Pokemon among other things. To test the signup-functionality we first navigate to the signup-page, then we type in a randomly generated username and click «sign up». Afterwords we check if the username we typed in is displayed in the header.
 
 # Project 3:
 
@@ -94,7 +100,6 @@ The Header was made using the Chakra UI Flex component, which again contains a F
 
 The ColorModeSwitcher is a component from Chakra UI that supplies an easy-to-use icon-button that allows you to change the colormode, and which works with the useColorModeValue hook.
 
-
 ### Web accessibility
 
 According to the Web Accessibility Initiative it’s most efficient and effective to incorporate accessibility from the very beginning of projects, so you don’t need go back and to re-do work. Because of this we worked on making our website accessible from the start. A lot of our knowledge on this subject comes from the Web Accessibility Initiative (w3.org). We found that this source had a lot of thorough information about how we could make our website as inclusive as possible.
@@ -106,26 +111,33 @@ Our second focus area was to make the content easily distinguishable. This is to
 We chose to test one aspect of web accessibility by trying to navigate it with a screen reader. Because all the developers on this project can navigate most web pages without problem, we found that we couldn’t judge very well how accessible the web page was. Testing with a screen reader helped us find spelling mistakes, check the accuracy and quality of our alternative image texts and helped us identify problems with reading order, form elements, and many other aspects of accessibility.
 
 ## Searching
-Searching is achieved using the SearchBar.tsx component, GraphQL + Apollo and Redux. The SearchBar sets the input as _query_ onChange(). When submitted using the 'Submit' button, _query_  replaces the graphql paramater _filter_, using the Redux dispatch method and setFilter(query).
+
+Searching is achieved using the SearchBar.tsx component, GraphQL + Apollo and Redux. The SearchBar sets the input as _query_ onChange(). When submitted using the 'Submit' button, _query_ replaces the graphql paramater _filter_, using the Redux dispatch method and setFilter(query).
 
 ## Filtering
+
 Filtering is achieved using the WeightSlider.tsx component, GraphQL + Apollo and Redux. The WeightSlider uses the RangeSlider component from the Chakra-UI library to retrieve to variables, minimum weight and maximum weight. When the user releases the slider, the min and max values replaces the GraphQL paramater _minWeight_ and _maxWeight_ paramaters, using the Redux dispatch method and setMinWeight() and setMaxWeight().
 
 ## Sorting
+
 Sorting is achieved using the SortDropdownMenu.tsx component, GraphQL + Apollo and Redux. SortDropdownMenu uses the Menu componenet from Chakra-UI with four items corresponding to the four paramaters the user can sort on. When the desired paramater has been selected, it replaces the GraphQL paramater _sort_, using the Redux dispatch method and setSort().
 
 ## GraphQL queries
-We use apollo-client to manage our graphQL queries in the frontend. This allows us to write queries using regular graphQL syntax, and pass them to a simple useQuery or useMutation function from apollo-client. The queries are all located in `frontend/src/services/graphql.ts` and can be imported everywhere in the frontend, eg. on the login and signup page. Apollo-client handles sending the request and gives 3 values, data, loading and error. using these we can tell the user if the request is on its way, if there was an error while processing the request, and finally show them the data one the request has gone through. 
+
+We use apollo-client to manage our graphQL queries in the frontend. This allows us to write queries using regular graphQL syntax, and pass them to a simple useQuery or useMutation function from apollo-client. The queries are all located in `frontend/src/services/graphql.ts` and can be imported everywhere in the frontend, eg. on the login and signup page. Apollo-client handles sending the request and gives 3 values, data, loading and error. using these we can tell the user if the request is on its way, if there was an error while processing the request, and finally show them the data one the request has gone through.
 
 ## Pagination
-This is implemented by simply making *skip* and *limit* available as variables in GraphQL queries. These are added to the MongoDB query to control the flow of information. On the website, the user can increase or decrease *skip* by multiples of *limit* using buttons.
+
+This is implemented by simply making _skip_ and _limit_ available as variables in GraphQL queries. These are added to the MongoDB query to control the flow of information. On the website, the user can increase or decrease _skip_ by multiples of _limit_ using buttons.
 
 ## Backend
+
 We use express-graphql to manage our backend. To run the backend locally you first need to compile server.ts to javascript, this is done using the `tsc server.ts` command. This will compile user.ts, pokemon.ts and server.ts to javascript and render .js files for each of them. To run the backend you run `node server.js`. For this to acually have some data to handle, you need to setup a mongoDB database on your own system and populate it using the JSON file found [here.](http://it2810-06.idi.ntnu.no/pokemon.json)
 
-The schemas' and interfaces for user and pokemon can be found in pokemon.ts and user.ts. The schema that is actually interpreted by graphQL can be found in server.ts and is made using `buildSchema`. This is where all the mutations and queries are defined. The resolvers for these can be found in the `root` object just below the `buildSchema` function. This is where the actual backend _logic_ is located, and is where we handle requests. 
+The schemas' and interfaces for user and pokemon can be found in pokemon.ts and user.ts. The schema that is actually interpreted by graphQL can be found in server.ts and is made using `buildSchema`. This is where all the mutations and queries are defined. The resolvers for these can be found in the `root` object just below the `buildSchema` function. This is where the actual backend _logic_ is located, and is where we handle requests.
 
 ## Favorites
-This is one of the things we sadly didn't have time to fully implement. The backend logic is done, and mutations and queries are written and working, but translating them into the frontend proved more time-consuming than expected. The resolvers for it can be found in `root` in `server.ts`, and partial frontend code can be found on branch `20-favorite-pokemon`. 
 
-To see it working, go to the login-page. Log in as "hei", then go to the profile-page. Here you can see the favorite Pokemon for that user that have been added through queries. 
+This is one of the things we sadly didn't have time to fully implement. The backend logic is done, and mutations and queries are written and working, but translating them into the frontend proved more time-consuming than expected. The resolvers for it can be found in `root` in `server.ts`, and partial frontend code can be found on branch `20-favorite-pokemon`.
+
+To see it working, go to the login-page. Log in as "hei", then go to the profile-page. Here you can see the favorite Pokemon for that user that have been added through queries.
