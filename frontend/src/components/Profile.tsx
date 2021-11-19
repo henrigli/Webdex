@@ -33,6 +33,7 @@ export const Profile = () => {
         pt={5}
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
+        id={"favorites"}
       >
         {data.user.favorites.map((p: Number) => (
           <FavoriteContainer id={p} />
