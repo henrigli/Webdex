@@ -30,6 +30,7 @@ export const Header = () => {
           size="md"
           letterSpacing={"tighter"}
           fontSize={{ base: "0px", sm: "0px", lg: "40px" }}
+          id={"header"}
         >
           <a href="/">Webdex</a>
         </Heading>

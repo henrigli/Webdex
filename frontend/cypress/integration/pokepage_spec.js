@@ -13,11 +13,8 @@ describe("Pokemon page", () => {
     cy.get(".css-1jw1hn6").should("include.text", "Bulbasaur");
   });
 
-  it("marks pokemon as favorite", () => {
-    cy.get(".css-1u4cbqe > .chakra-button > .chakra-icon > path").click();
-  });
-
-  it("checks if favorite is added to profile", () => {
+  it("marks pokemon as favorite and cheks of added to profile", () => {
+    cy.get("#favoriteStar").click();
     cy.get('[href="/profile"] > .chakra-button').click();
     cy.get("#favorites").contains("Bulbasaur").should("exist");
   });

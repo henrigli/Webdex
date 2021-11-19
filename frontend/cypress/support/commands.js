@@ -26,19 +26,16 @@
 Cypress.Commands.add("signup", (username) => {
   cy.get(".css-0 > .chakra-link").click();
   cy.get("#field-2").click().type(username);
-  cy.get(".chakra-stack > .chakra-button").click();
+  cy.get("#signupButton").click();
   cy.get("#helloUser").contains(username).should("exist");
   cy.get(".css-1yb07p2 > .chakra-heading").click();
 });
 
 Cypress.Commands.add("login", (username) => {
   cy.get("#field-2").click().type(username);
-  cy.get(".chakra-stack > .chakra-button").click();
-  cy.get("#helloUser").contains(username).should("exist");
-  cy.get(".css-1yb07p2 > .chakra-heading").click();
+  cy.get("#loginButton").click();
 });
 
 Cypress.Commands.add("logout", () => {
   cy.get("#logout").click();
-  cy.get("#helloUser").contains("guest").should("exist");
 });
