@@ -1,13 +1,9 @@
-import React from 'react';
-import { fireEvent, render, screen, waitForElement } from '@testing-library/react';
+import { render, screen, waitForElement } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MockedProvider } from '@apollo/client/testing';
-import { setFilter, store, useAppDispatch } from '../../features/store';
-import App from '../../App';
+import { store } from '../../features/store';
 import { SEARCH_QUERY } from '../../services/graphql';
-import { BrowserRouter } from 'react-router-dom';
 import { SearchResults } from '../SearchResults';
-import { act } from 'react-dom/test-utils';
 
 const mocks = [
   {
@@ -60,27 +56,17 @@ const mocks = [
 ];
 
 test('search', async () => {
-  await act(async () => {
-    render (
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Provider store={store}>
-            <SearchResults />
-        </Provider>
-      </MockedProvider>
-    );
-  });
-
+  render (
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <Provider store={store}>
+          <SearchResults />
+      </Provider>
+    </MockedProvider>
+  );
 
   const result = await waitForElement(() => screen.getByTestId("search-results"))
   
   expect(result.querySelector("#pokemon-25")).toHaveTextContent("Pikachu")
   expect(result.querySelector("#pokemon-26")).toHaveTextContent("Raichu")
   expect(result.querySelector("#pokemon-172")).toHaveTextContent("Pichu")
-
-  /*
-  1. Enter search term
-  2. Modify search parameters
-  3. View more info about Pokémon
-  4. Return to search, in the same state as before
- */
 });

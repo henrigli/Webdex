@@ -82,7 +82,7 @@ export const SearchResults = () => {
         data-testid={"search-results"}
       >
         {data.pokemon_search.pokemon.map((p: Pokemon) => (
-          <PokemonContainer pokemon={p} key={"pokemon-" + p.id} />
+          <PokemonContainer key={p.id.toString()} pokemon={p} />
         ))}
       </Grid>
       <Center marginTop="2em" marginBottom="5em">
