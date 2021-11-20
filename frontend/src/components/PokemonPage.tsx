@@ -13,7 +13,7 @@ import {
   useAppSelector,
   addFavorite,
   removeFavorite,
-  useAppDispatch
+  useAppDispatch,
 } from "../features/store";
 import { useParams } from "react-router";
 import { ADD_FAVORITE, FIND_ONE, REMOVE_FAVORITE } from "../services/graphql";
@@ -40,24 +40,31 @@ const PokemonPage = () => {
   // For this mutation, we only need the request function, not the response.
   const [updateServerFavorite] = useMutation(
     // Both possible mutations have the same input and can be used interchangably.
-    isFavorite ? REMOVE_FAVORITE : ADD_FAVORITE, {
+    isFavorite ? REMOVE_FAVORITE : ADD_FAVORITE,
+    {
       variables: { name: reduxName, id: id },
-      fetchPolicy: "no-cache"
-    });
+      fetchPolicy: "no-cache",
+    }
+  );
 
   const updateFavorite = () => {
     updateServerFavorite()
       .then(() => {
         // These Redux functions can also be used interchangably.
-        dispatch((isFavorite ? removeFavorite : addFavorite)(id))
+        dispatch((isFavorite ? removeFavorite : addFavorite)(id));
       })
-      .catch(err => alert(err));
+      .catch((err) => alert(err));
   };
 
   useEffect(() => {});
 
   if (loading) return <Box>Loading...</Box>;
-  if (error) return <Box>{error.name}: {error.message} :(</Box>;
+  if (error)
+    return (
+      <Box>
+        {error.name}: {error.message} :(
+      </Box>
+    );
 
   return (
     <>
@@ -80,10 +87,7 @@ const PokemonPage = () => {
           shadow="md"
           marginTop="2em"
         >
-          <Star
-            isFavorite={isFavorite}
-            onClick={updateFavorite}
-          />
+          <Star isFavorite={isFavorite} onClick={updateFavorite} />
           <Center>
             <Image
               maxW="xs"

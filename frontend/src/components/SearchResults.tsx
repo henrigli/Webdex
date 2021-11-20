@@ -78,6 +78,7 @@ export const SearchResults = () => {
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
+        data-testid={"search-results"}
       >
         {data.pokemon_search.pokemon.map((p: Pokemon) => (
           <PokemonContainer key={p.id.toString()} pokemon={p} />

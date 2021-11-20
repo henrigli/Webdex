@@ -15,6 +15,7 @@ export const Profile = () => {
     variables: {
       name: reduxName,
     },
+    fetchPolicy: "no-cache"
   });
 
   if (loading) return <Loading />;
@@ -30,6 +31,7 @@ export const Profile = () => {
         pt={5}
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
+        id={"favorites"}
       >
         {data.user.favorites.map((p: Number) => (
           <FavoriteContainer key={p.toString()} id={p} />

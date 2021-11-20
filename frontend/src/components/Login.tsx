@@ -17,10 +17,7 @@ import {
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { FaUserAlt } from "react-icons/fa";
-import {
-  useAppDispatch,
-  logIn,
-} from "../features/store";
+import { useAppDispatch, logIn } from "../features/store";
 
 import { FIND_USER } from "../services/graphql";
 
@@ -50,14 +47,14 @@ const Login: React.FC = () => {
 
     // TS hates reading non-existant data 👵🏻
     if (data && data.user) {
-      redirect(data.user)
+      redirect(data.user);
     } else {
-      alert("There is no user with the username \"" + username + "\"")
+      alert('There is no user with the username "' + username + '"');
     }
   };
 
   // Logs in and redirects to profile
-  const redirect = (user: { name: string, favorites: number[] }) => {
+  const redirect = (user: { name: string; favorites: number[] }) => {
     dispatch(logIn(user));
     history.push("/profile");
   };
@@ -100,6 +97,7 @@ const Login: React.FC = () => {
               colorScheme="teal"
               width="full"
               onClick={handleLogin}
+              id={"loginButton"}
             >
               Login
             </Button>
