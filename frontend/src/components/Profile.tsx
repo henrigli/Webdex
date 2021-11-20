@@ -36,7 +36,7 @@ export const Profile = () => {
         id={"favorites"}
       >
         {data.user.favorites.map((p: Number) => (
-          <FavoriteContainer id={p} />
+          <FavoriteContainer key={p.toString()} id={p} />
         ))}
       </Grid>
     </VStack>

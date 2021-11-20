@@ -20,6 +20,7 @@ const PokemonContainer = (props: { pokemon: Pokemon }) => {
       overflow="hidden"
       bg={bgcolor}
       shadow="md"
+      id={"pokemon-" + props.pokemon.id}
       onClick={handleClick}
       _hover={{
         bg: bgcolorSelected,

@@ -22,7 +22,7 @@ import {
   nextPage,
 } from "../features/store";
 import { SortDropdownMenu } from "./SortDropdownMenu";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch } from "../features/store";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
@@ -79,9 +79,10 @@ export const SearchResults = () => {
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={2}
+        data-testid={"search-results"}
       >
         {data.pokemon_search.pokemon.map((p: Pokemon) => (
-          <PokemonContainer pokemon={p} />
+          <PokemonContainer key={p.id.toString()} pokemon={p} />
         ))}
       </Grid>
       <Center marginTop="2em" marginBottom="5em">
