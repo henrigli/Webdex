@@ -59,12 +59,9 @@ export const Profile = () => {
           </Box>
         </Box>
       </Center>
-
       <Heading size="md" marginTop="2em">
         Your favorite Pokémon:
       </Heading>
-
-      {
         <Grid
         pt={5}
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
@@ -75,7 +72,6 @@ export const Profile = () => {
             <FavoriteContainer key={p.toString()} id={p} />
           ))}
         </Grid>
-      }
     </VStack>
   );
 };

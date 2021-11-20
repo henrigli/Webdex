@@ -22,7 +22,7 @@ import {
   nextPage,
 } from "../features/store";
 import { SortDropdownMenu } from "./SortDropdownMenu";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch } from "../features/store";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
