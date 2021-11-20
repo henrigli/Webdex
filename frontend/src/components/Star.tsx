@@ -2,10 +2,11 @@ import { Icon } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
-export const Star = (props: { isFavorite: boolean, onClick: () => void}) => {
+export const Star = (props: { isFavorite: boolean; onClick: () => void }) => {
   return (
     <IconButton
       aria-label="Favorite"
+      id={"favoriteStar"}
       icon={
         <Icon
           as={props.isFavorite ? AiFillStar : AiOutlineStar}

@@ -59,7 +59,7 @@ const Signup = () => {
             payload.data.createUser.errors
           );
 
-          dispatch(logIn(payload.data.createUser.user))
+          dispatch(logIn(payload.data.createUser.user));
           history.push("/profile");
         } else if (payload.data.createUser.errors) {
           //Checks for any errorss and logs them to console.
@@ -126,6 +126,7 @@ const Signup = () => {
                 colorScheme="teal"
                 width="full"
                 onClick={handleRegistration}
+                id={"signupButton"}
               >
                 Sign up
               </Button>
