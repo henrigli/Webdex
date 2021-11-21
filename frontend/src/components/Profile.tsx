@@ -21,8 +21,6 @@ export const Profile = () => {
   if (loading) return <Loading />;
   if (error) return <Error error={error} />;
 
-  console.log(data);
-
   return (
     <VStack>
       <Heading size="xl" pt={10} pb={3}>

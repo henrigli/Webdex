@@ -21,8 +21,8 @@ import {
   prevPage,
   nextPage,
 } from "../features/store";
-import { SortDropdownMenu } from "./SortDropdownMenu";
 import { useAppDispatch } from "../features/store";
+import { SortDropdownMenu } from "./SortDropdownMenu";
 
 export const SearchResults = () => {
   const filter = useAppSelector(selectFilter);
@@ -34,7 +34,6 @@ export const SearchResults = () => {
 
   const dispatch = useAppDispatch();
 
-  console.log(filter);
   const { loading, error, data } = useQuery(SEARCH_QUERY, {
     variables: {
       filter: filter,
