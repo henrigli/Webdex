@@ -16,7 +16,8 @@ export interface User {
 
 // http://it2810-06.idi.ntnu.no/
 export const client = new ApolloClient({
-  uri: "http://it2810-06.idi.ntnu.no/graphql",
+  uri: "http://react.dirtcrate.com/graphql",
+  // uri: "http://it2810-06.idi.ntnu.no/graphql"
   // uri: "http://localhost:4000/graphql/",
   cache: new InMemoryCache(),
 });
