@@ -9,8 +9,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # **Documentation**
 
-# Project 3:
-
 ## Layout and design
 
 The website design is made using the Chakra UI component library.
