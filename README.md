@@ -1,94 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How to start
+1. Clone project
+2. > cd frontend
+3. > npm install
+4. > npm start
+5. Enjoy!
 
 # **Documentation**
-
-# Changes for project 4
-
-We chose task c) "perfect client and backend from project 3".
-
-## Improved accessibility
-
-We got feedback that the images were not as accessible as they shoud because of a lack of alt-tag, so we added an alt-tag to all images that says "Picture of " and the Pokémon-name.
-
-## Updated icons in Header
-
-Some users found the icons in the Header confusing, especially the login-icon (an unlocked padlock). We therefore removed the login-icon, replaced it with a _logout_-icon which logs out the user and then redirects the user to the login-menu. We found this to be a more intuative solution.
-
-## Favorites-functionality
-
-In project 3 we did not manage to finish the _favorites_-functionality in time. Although we did have functioning backend-logic, the user could not use the "Star"-button to add new favorites to their profile. In project 4 we fixed this. We made it so the user could press the "Star"-button (and change the star-icon from empty to full) and have the Pokémon appear on the users profile-page. The user can also press the "Star"-button again to remove the Pokémon from their favorites.
-
-## Fixes in pagination:
-
-In project 3 we had a bug where if you updated your search query you would not be sent back to page 1 of the search result. This resulted in users having to scroll through several empty pages until they got to page 1 depending on what page they were on, and how many pokemon the new query returned. This turned out to be a relatively simple fix, as all we needed to do was add an extra dispatch to the onClick and onChange of the submit button and weight-slider.
-
-Before:
-
-```javascript
-onClick={() => {
-    dispatch(setFilter(query));
-    }
-}
-```
-
-After:
-
-```javascript
-onClick={() => {
-    dispatch(setFilter(query));
-    dispatch(clearSkip());
-    }
-}
-```
-
-## Testing:
-
-One thing we did not manage to finish in time for project 3 was testing. Therefore we chose to finish them in project 4. For end-to-end testing we have used the testing framework Cypress. Cypress takes snapshots while the test runs to give full control and enables us to debug directly in Developer Tools. We have tested functionality for signup and login, search, favoriting a Pokemon among other things. To test the signup-functionality we first navigate to the signup-page, then we type in a randomly generated username and click «sign up». Afterwords we check if the username we typed in is displayed in the header.
-
-While our Cypress tests cover all uses we deem necessary, we also have a few unit tests of key components in addition to this. As unit tests finish quickly and can be run without a connected server, they are a good supplement to the more complete E2E testing.
 
 # Project 3:
 
@@ -142,6 +61,9 @@ The schemas' and interfaces for user and pokemon can be found in pokemon.ts and 
 
 ## Favorites
 
-This is one of the things we sadly didn't have time to fully implement. The backend logic is done, and mutations and queries are written and working, but translating them into the frontend proved more time-consuming than expected. The resolvers for it can be found in `root` in `server.ts`, and partial frontend code can be found on branch `20-favorite-pokemon`.
+The user can press the "Star"-button (and change the star-icon from empty to full) and have the Pokémon appear in the users profile-page. The user can also press the "Star"-button again to remove the Pokémon from their favorites.
 
-To see it working, go to the login-page. Log in as "hei", then go to the profile-page. Here you can see the favorite Pokemon for that user that have been added through queries.
+## Testing:
+For end-to-end testing we have used the testing framework Cypress. Cypress takes snapshots while the test runs to give full control and enables us to debug directly in Developer Tools. We have tested functionality for signup and login, search, favoriting a Pokemon among other things. To test the signup-functionality we first navigate to the signup-page, then we type in a randomly generated username and click «sign up». Afterwords we check if the username we typed in is displayed in the header.
+
+While our Cypress tests cover all uses we deem necessary, we also have a few unit tests of key components in addition to this. As unit tests finish quickly and can be run without a connected server, they are a good supplement to the more complete E2E testing.
