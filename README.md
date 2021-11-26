@@ -7,6 +7,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 4. > npm start
 5. Enjoy!
 
+## How to run tests
+1. Run project
+2. Open new terminal
+3. >npx cypress run
+
 # **Documentation**
 
 ## Layout and design
